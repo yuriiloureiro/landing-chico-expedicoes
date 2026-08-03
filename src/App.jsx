@@ -2,7 +2,6 @@ import "./styles/global.css";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Historia from "./components/Historia";
-import Video from "./components/Video";
 import Experiencia from "./components/Experiencia";
 import Expedicoes from "./components/Expedicoes";
 import Depoimentos from "./components/Depoimentos";
@@ -17,7 +16,6 @@ export default function App() {
       <Nav />
       <Hero />
       <Historia />
-      <Video />
       <Experiencia />
       <Expedicoes />
       <Depoimentos />

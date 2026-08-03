@@ -1,18 +1,47 @@
-import chico from "../assets/images/chico-perfil.webp";
+import { useEffect, useState } from "react";
 import "./Historia.css";
 
+const VIDEO_ID = "8wPcimhfuOU";
+const THUMBNAIL = `https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`;
+
 export default function Historia() {
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = "";
+    };
+  }, [open]);
+
   return (
     <section className="historia" id="sobre">
       <div className="container historia-grid">
-        <div className="historia-img-wrap">
-          <img
-            src={chico}
-            alt="Chico em Maya Bay, na Tailândia"
-            className="historia-img"
-          />
+        <div className="historia-video-wrap">
+          <button
+            className="historia-video-cover"
+            onClick={() => setOpen(true)}
+            aria-label="Assistir ao vídeo do Chico"
+            style={{ backgroundImage: `url(${THUMBNAIL})` }}
+          >
+            <span className="historia-play-icon">
+              <svg
+                viewBox="0 0 24 24"
+                width="24"
+                height="24"
+                fill="currentColor"
+              >
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </span>
+          </button>
           <span className="historia-signature">Chico Castilho</span>
         </div>
+
         <div className="historia-text">
           <p className="eyebrow historia-eyebrow">Quem te leva</p>
           <h2 className="section-title historia-title">
@@ -33,6 +62,30 @@ export default function Historia() {
           </p>
         </div>
       </div>
+
+      {open && (
+        <div className="historia-modal" onClick={() => setOpen(false)}>
+          <button
+            className="historia-modal-close"
+            onClick={() => setOpen(false)}
+            aria-label="Fechar vídeo"
+          >
+            ×
+          </button>
+          <div
+            className="historia-modal-frame"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${VIDEO_ID}?autoplay=1`}
+              title="Apresentação do Chico Castilho"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
