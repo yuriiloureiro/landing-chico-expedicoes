@@ -1,0 +1,39 @@
+.cta-final {
+  position: relative;
+  background: var(--dark-deeper);
+  padding: 130px 0;
+  overflow: hidden;
+  text-align: center;
+}
+
+.cta-final-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.cta-eyebrow {
+  color: var(--gold-soft);
+}
+
+.cta-title {
+  color: var(--white);
+  font-size: clamp(30px, 4.5vw, 56px);
+  margin: 16px 0 20px;
+}
+
+.cta-sub {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 17px;
+  line-height: 1.6;
+  margin-bottom: 34px;
+}
+
+.cta-signature {
+  display: block;
+  font-family: var(--font-signature);
+  font-size: 32px;
+  color: var(--gold-soft);
+  margin-top: 26px;
+}

@@ -1,0 +1,130 @@
+.depoimentos {
+  background: var(--white);
+  padding: 110px 0 120px;
+  overflow: hidden;
+}
+
+.depoimentos .section-header {
+  padding: 0 24px;
+}
+
+.depoimentos .section-header .section-title {
+  font-size: clamp(28px, 3.4vw, 42px);
+  color: var(--dark);
+}
+
+.depoimentos-track {
+  width: 100%;
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 80px,
+    black calc(100% - 80px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    black 80px,
+    black calc(100% - 80px),
+    transparent 100%
+  );
+}
+
+.depoimentos-loop {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: depoimentos-scroll 46s linear infinite;
+}
+
+.depoimentos-track:hover .depoimentos-loop {
+  animation-play-state: paused;
+}
+
+@keyframes depoimentos-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.depoimento-card {
+  flex: 0 0 auto;
+  width: 340px;
+  background: var(--bg);
+  border-radius: 18px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+  box-shadow: 0 12px 30px rgba(19, 57, 48, 0.06);
+}
+
+.depoimento-texto {
+  color: var(--dark);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.depoimento-autor {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.depoimento-avatar {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--dark);
+  color: var(--gold-soft);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.depoimento-nome {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--dark);
+}
+
+.depoimento-expedicao {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+@media (max-width: 640px) {
+  .depoimento-card {
+    width: 280px;
+  }
+
+  .depoimentos-track {
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 32px,
+      black calc(100% - 32px),
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0,
+      black 32px,
+      black calc(100% - 32px),
+      transparent 100%
+    );
+  }
+}

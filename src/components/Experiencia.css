@@ -1,0 +1,54 @@
+.experiencia {
+  padding: 110px 0;
+  background: var(--white);
+}
+
+.experiencia .section-header .section-title {
+  font-size: clamp(28px, 3.4vw, 42px);
+  max-width: 760px;
+  margin: 0 auto;
+  color: var(--dark);
+}
+
+.experiencia-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  background: #ece9e2;
+  border: 1px solid #ece9e2;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.experiencia-card {
+  background: var(--bg);
+  padding: 40px 32px;
+}
+
+.experiencia-marker {
+  display: block;
+  width: 34px;
+  height: 4px;
+  border-radius: 4px;
+  background: var(--coral);
+  margin-bottom: 22px;
+}
+
+.experiencia-card h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  color: var(--dark);
+  margin-bottom: 10px;
+}
+
+.experiencia-card p {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+  .experiencia-grid {
+    grid-template-columns: 1fr;
+  }
+}

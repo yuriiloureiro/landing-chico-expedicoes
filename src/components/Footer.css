@@ -1,0 +1,24 @@
+.footer {
+  background: var(--dark-deeper);
+  padding: 40px 0;
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.footer-logo {
+  height: 56px;
+  width: 56px;
+  border-radius: 50%;
+}
+
+.footer-instagram {
+  color: var(--gold-soft);
+  font-size: 14px;
+  font-weight: 500;
+}

@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=La+Belle+Aurore&display=swap');
+
+:root {
+  --dark: #133930;
+  --dark-deeper: #0c2721;
+  --gold: #E3A836;
+  --gold-soft: #F0C878;
+  --coral: #E8916B;
+  --muted: #666666;
+  --bg: #F9F9F7;
+  --white: #FFFFFF;
+
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --font-signature: 'La Belle Aurore', cursive;
+
+  --max-width: 1280px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 88px;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--dark);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--coral);
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 920px;
+  margin: 0 auto 60px;
+}
+
+.section-header .eyebrow {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.section-header .section-title {
+  margin: 0;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--gold);
+  color: var(--dark-deeper);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 18px 32px;
+  border-radius: 100px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  box-shadow: 0 8px 24px rgba(227, 168, 54, 0.25);
+}
+
+.btn-primary:hover {
+  background: var(--gold-soft);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(227, 168, 54, 0.35);
+}
+
+.btn-primary:focus-visible,
+a:focus-visible,
+button:focus-visible {
+  outline: 3px solid var(--coral);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
