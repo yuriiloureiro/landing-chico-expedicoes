@@ -66,7 +66,7 @@ export default function Nav() {
             </svg>
           </a>
           <a
-            href="https://wa.me/5591XXXXXXXXX"
+            href="https://wa.me/5513982026838"
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary nav-cta"
@@ -94,7 +94,7 @@ export default function Nav() {
           </a>
         ))}
         <a
-          href="https://wa.me/5591XXXXXXXXX"
+          href="https://wa.me/5513982026838"
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary nav-cta-mobile"

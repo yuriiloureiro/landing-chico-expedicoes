@@ -17,7 +17,7 @@ export default function CTAFinal() {
         </p>
         <a
           className="btn-primary"
-          href="https://wa.me/5591XXXXXXXXX?text=Oi%20Chico!%20Quero%20conversar%20sobre%20a%20expedi%C3%A7%C3%A3o%20para%20a%20Tail%C3%A2ndia."
+          href="https://wa.me/5513982026838?text=Oi%20Chico!%20Quero%20conversar%20sobre%20a%20expedi%C3%A7%C3%A3o%20para%20a%20Tail%C3%A2ndia."
           target="_blank"
           rel="noopener noreferrer"
         >

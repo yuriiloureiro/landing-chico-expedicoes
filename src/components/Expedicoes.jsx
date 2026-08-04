@@ -1,21 +1,21 @@
-import lanterna from '../assets/images/chico-expedicao-tailandia.webp';
-import ilhas from '../assets/images/banner2.webp';
-import './Expedicoes.css';
+import lanterna from "../assets/images/chico-expedicao-tailandia.webp";
+import ilhas from "../assets/images/banner2.webp";
+import "./Expedicoes.css";
 
-const WPP = 'https://wa.me/5591XXXXXXXXX';
+const WPP = "https://wa.me/5513982026838";
 
 const datas = [
   {
-    nome: 'Festival das Lanternas 2026',
-    periodo: '19 de novembro a 04 de dezembro',
+    nome: "Festival das Lanternas 2026",
+    periodo: "19 de novembro a 04 de dezembro",
     img: lanterna,
-    msg: 'Oi Chico! Quero saber mais sobre a expedição do Festival das Lanternas 2026.',
+    msg: "Oi Chico! Quero saber mais sobre a expedição do Festival das Lanternas 2026.",
   },
   {
-    nome: 'Réveillon das Lanternas',
-    periodo: '28 de dezembro a 12 de janeiro',
+    nome: "Réveillon das Lanternas",
+    periodo: "28 de dezembro a 12 de janeiro",
     img: ilhas,
-    msg: 'Oi Chico! Quero saber mais sobre a expedição do Réveillon das Lanternas.',
+    msg: "Oi Chico! Quero saber mais sobre a expedição do Réveillon das Lanternas.",
   },
 ];
 
@@ -48,7 +48,9 @@ export default function Expedicoes() {
             </div>
           ))}
         </div>
-        <p className="expedicoes-nota">Vagas limitadas — grupos pequenos por escolha, não por acaso.</p>
+        <p className="expedicoes-nota">
+          Vagas limitadas — grupos pequenos por escolha, não por acaso.
+        </p>
       </div>
     </section>
   );
