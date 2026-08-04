@@ -4,6 +4,7 @@ import Hero from "./components/Hero";
 import Historia from "./components/Historia";
 import Experiencia from "./components/Experiencia";
 import Expedicoes from "./components/Expedicoes";
+import Galeria from "./components/Galeria";
 import Depoimentos from "./components/Depoimentos";
 import Numeros from "./components/Numeros";
 import FAQ from "./components/FAQ";
@@ -18,6 +19,7 @@ export default function App() {
       <Historia />
       <Experiencia />
       <Expedicoes />
+      <Galeria />
       <Depoimentos />
       <Numeros />
       <FAQ />
