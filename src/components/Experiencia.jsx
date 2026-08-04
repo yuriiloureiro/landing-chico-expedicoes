@@ -2,9 +2,9 @@ import "./Experiencia.css";
 
 const pilares = [
   {
-    titulo: "Grupo pequeno, de verdade",
+    titulo: "Um grupo na medida certa",
     texto:
-      "Turmas reduzidas a experiência é conjunta, não uma fila de turistas seguindo uma bandeirinha.",
+      "O grupo é pensado para que todos possam aproveiar a viagem, criar conexões e receber o suporte necessário do inicio ao fim.",
   },
   {
     titulo: "Chico junto o tempo todo",
@@ -19,17 +19,17 @@ const pilares = [
   {
     titulo: "Logística 100% resolvida",
     texto:
-      "Deslocamento, hospedagem e imprevistos — você só precisa aparecer e viver a experiência.",
+      "Deslocamento, hospedagem e imprevistos, você só precisa aparecer e viver a experiência.",
   },
   {
     titulo: "Segurança em primeiro lugar",
     texto:
-      "Anos de expedições e conhecimento local aplicados pra você viajar tranquilo, sem susto.",
+      "Experiente em expedições e conhecimento local aplicados pra você viajar tranquilo e sem susto.",
   },
   {
-    titulo: "Um momento que não se repete",
+    titulo: "O momento mais esperado da viagem",
     texto:
-      "O céu se enchendo de milhares de lanternas — poucas vezes na vida algo assim acontece.",
+      "O céu se enchendo de milhares de lanternas, uma cena que arrepia até quem achava que já tinha visto de tudo.",
   },
 ];
 

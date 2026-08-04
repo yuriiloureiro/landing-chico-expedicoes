@@ -10,7 +10,7 @@ const perguntas = [
   {
     pergunta: "Posso ir sozinho(a)?",
     resposta:
-      "Com certeza — a maioria das pessoas que participa vai sozinha, e é justamente aí que costumam nascer as conexões mais fortes do grupo ao longo da jornada.",
+      "Com certeza, a maioria das pessoas que participa vai sozinha, e é justamente aí que costumam nascer as conexões mais fortes do grupo ao longo da jornada.",
   },
   {
     pergunta: "Qual a idade média dos participantes?",

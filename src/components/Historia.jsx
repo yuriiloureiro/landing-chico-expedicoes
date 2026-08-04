@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
+import capaVideo from "../assets/images/capa-video.webp";
 import "./Historia.css";
 
-const VIDEO_ID = "8wPcimhfuOU";
-const THUMBNAIL = `https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`;
+const VIDEO_ID = "7-t5KniMERc";
 
 export default function Historia() {
   const [open, setOpen] = useState(false);
@@ -26,7 +26,7 @@ export default function Historia() {
             className="historia-video-cover"
             onClick={() => setOpen(true)}
             aria-label="Assistir ao vídeo do Chico"
-            style={{ backgroundImage: `url(${THUMBNAIL})` }}
+            style={{ backgroundImage: `url(${capaVideo})` }}
           >
             <span className="historia-play-icon">
               <svg
@@ -45,20 +45,30 @@ export default function Historia() {
         <div className="historia-text">
           <p className="eyebrow historia-eyebrow">Quem te leva</p>
           <h2 className="section-title historia-title">
-            Não é um roteiro pronto. É alguém que já viveu cada parte dele.
+            Muito além de um roteiro. Uma expedição criada por quem realmente
+            conhece a Tailândia.
           </h2>
           <p>
-            Chico largou a rotina de escritório pra viver como nômade digital e
-            a Tailândia virou o país que ele mais retornou, mais estudou e mais
-            amou. De lá pra cá já são mais de 100 roteiros criados, um Instagram
-            com mais de 25 mil pessoas acompanhando cada expedição, e uma
-            certeza: viagem boa não é sobre o destino, é sobre ter alguém de
-            confiança guiando o caminho.
+            Você não vai viajar com alguem que pesquisou o destino na internet.
+            Vai viajar com quem conhece a Tailândia na prática e transformou
+            anos de experiência em uma expedição cuidadosamente planejada.
           </p>
           <p>
-            Nas expedições, ele não fica só de longe organizando — ele está
-            junto, todos os dias, resolvendo o que aparece e criando os momentos
-            que não têm como planejar.
+            Com mais de 50 roteiros internacionais criados, milhares de
+            viajantes impactados e uma comunidade com mais de 28 mil pessoas
+            acompanhando cada nova aventura, o Chico leva para a expedição muito
+            mais do que organização: leva experiência.
+          </p>
+          <p>E é isso que faz a diferença.</p>
+          <p>
+            Do primeiro ao último dia, ele acompanha o grupo em cada etapa da
+            viagem, cuida da logística, resolve imprevistos e abre portas para
+            experiências que dificilmente quem viaja sozinho conseguiria viver.
+          </p>
+          <p>
+            Enquando você aproveita a Tailândia, existe alguem experiente
+            cuidando dos detalhes para que sua única preocupação seja viver cada
+            momento.
           </p>
         </div>
       </div>
