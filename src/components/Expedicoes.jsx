@@ -48,9 +48,7 @@ export default function Expedicoes() {
             </div>
           ))}
         </div>
-        <p className="expedicoes-nota">
-          Vagas limitadas — grupos pequenos por escolha, não por acaso.
-        </p>
+        <p className="expedicoes-nota">VAGAS LIMITADAS</p>
       </div>
     </section>
   );

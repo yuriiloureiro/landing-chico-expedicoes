@@ -15,7 +15,7 @@ const perguntas = [
   {
     pergunta: "Qual a idade média dos participantes?",
     resposta:
-      "O grupo costuma reunir pessoas de diferentes idades, geralmente entre 30 e 60 anos. Mais do que a idade, o que une o grupo é o espírito aventureiro e a vontade de viver algo fora do comum.",
+      "O grupo costuma reunir pessoas de diferentes idades, geralmente entre 30 e 70 anos. Mais do que a idade, o que une o grupo é o espírito aventureiro e a vontade de viver algo fora do comum.",
   },
   {
     pergunta: "Como funciona depois que eu mando mensagem?",

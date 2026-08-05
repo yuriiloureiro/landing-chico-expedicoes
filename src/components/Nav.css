@@ -13,13 +13,13 @@
 }
 
 .nav--scrolled {
-  background: rgba(19, 57, 48, 0.92);
+  background: rgba(23, 73, 103, 0.92);
   backdrop-filter: blur(10px);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
 }
 
 .nav--open {
-  background: rgba(12, 39, 33, 0.98);
+  background: rgba(16, 47, 68, 0.98);
 }
 
 .nav-inner {

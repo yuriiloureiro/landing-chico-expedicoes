@@ -35,12 +35,12 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(12, 39, 33, 0.25);
+  background: rgba(16, 47, 68, 0.2);
   transition: background 0.25s ease;
 }
 
 .historia-video-cover:hover::before {
-  background: rgba(12, 39, 33, 0.4);
+  background: rgba(16, 47, 68, 0.4);
 }
 
 .historia-play-icon {
@@ -103,7 +103,7 @@
   position: fixed;
   inset: 0;
   z-index: 200;
-  background: rgba(8, 20, 17, 0.94);
+  background: rgba(10, 28, 41, 0.94);
   display: flex;
   align-items: center;
   justify-content: center;

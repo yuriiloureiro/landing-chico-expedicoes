@@ -2,7 +2,7 @@ import "./Numeros.css";
 
 const numeros = [
   { valor: "25 mil+", label: "pessoas acompanhando cada expedição" },
-  { valor: "100+", label: "roteiros criados pela Tailândia" },
+  { valor: "50+", label: "roteiros criados pela Tailândia" },
 ];
 
 export default function Numeros() {

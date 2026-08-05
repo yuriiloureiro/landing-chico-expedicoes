@@ -21,13 +21,13 @@ const depoimentos = [
   },
   {
     nome: "Ariele Lúcio",
-    expedicao: "Festival das Lanternas 2025",
+    expedicao: "Compra de passagens aéreas",
     texto:
       "Uma empresa maravilhosa, que preza respeito aos clientes! Atendimento excelente, uso com frequência e indico para todos os meus amigos. Chico é muito atencioso e prestativo, do início ao fim, dando todo suporte necessário, inclusive, já arcou com prejuízo por conta de erro da companhia aérea. Nessa ocasião, me deu respaldo completo e resolveu a situação de forma imediata! Uma empresa muito idônea, super indico e recomendo!!!! Nota milllll!!!! ❤️",
   },
   {
     nome: "Virna Farias",
-    expedicao: "Festival das Lanternas 2025",
+    expedicao: "Expedição Trekking Lençóis Maranhenses 2026",
     texto:
       "A viagem foi um sucesso! Teve mimos exclusivos e mais que especiais, comemoração do meu aniversário e muito cuidado e dedicação em todos os dias da expedição. Muito obrigada por tudo, @toporainomundo",
   },

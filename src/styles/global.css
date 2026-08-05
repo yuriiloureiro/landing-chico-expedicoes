@@ -1,18 +1,18 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=La+Belle+Aurore&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=Inter:wght@400;500;600&family=La+Belle+Aurore&display=swap");
 
 :root {
-  --dark: #133930;
-  --dark-deeper: #0c2721;
-  --gold: #E3A836;
-  --gold-soft: #F0C878;
-  --coral: #E8916B;
+  --dark: #174967;
+  --dark-deeper: #102f44;
+  --gold: #c66337;
+  --gold-soft: #e08b63;
+  --coral: #e8916b;
   --muted: #666666;
-  --bg: #F9F9F7;
-  --white: #FFFFFF;
+  --bg: #f9f9f7;
+  --white: #ffffff;
 
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'Inter', sans-serif;
-  --font-signature: 'La Belle Aurore', cursive;
+  --font-display: "Syne", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-signature: "La Belle Aurore", cursive;
 
   --max-width: 1280px;
 }
@@ -105,7 +105,10 @@ button {
   letter-spacing: 0.06em;
   padding: 18px 32px;
   border-radius: 100px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease;
   box-shadow: 0 8px 24px rgba(227, 168, 54, 0.25);
 }
 
@@ -123,7 +126,9 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.001ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.001ms !important;
