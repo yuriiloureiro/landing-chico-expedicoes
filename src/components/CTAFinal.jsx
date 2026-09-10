@@ -1,4 +1,5 @@
 import LanternsRising from "./LanternsRising";
+import { linkWhatsApp } from "../data/expedicoes";
 import "./CTAFinal.css";
 
 export default function CTAFinal() {
@@ -12,12 +13,11 @@ export default function CTAFinal() {
         </h2>
         <p className="cta-sub">
           Chame no WhatsApp e marque uma conversa rápida comigo — sem
-          compromisso, só pra tirar suas dúvidas e ver se essa expedição é pra
-          você.
+          compromisso, só pra tirar suas dúvidas e ver qual expedição é pra você.
         </p>
         <a
           className="btn-primary"
-          href="https://wa.me/5513982026838?text=Oi%20Chico!%20Quero%20conversar%20sobre%20a%20expedi%C3%A7%C3%A3o%20para%20a%20Tail%C3%A2ndia."
+          href={linkWhatsApp("Oi Chico! Quero conversar sobre as expedições.")}
           target="_blank"
           rel="noopener noreferrer"
         >

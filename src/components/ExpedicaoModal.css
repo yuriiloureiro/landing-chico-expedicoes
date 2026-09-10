@@ -1,0 +1,308 @@
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: rgba(10, 28, 41, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  backdrop-filter: blur(2px);
+}
+
+.modal-card {
+  position: relative;
+  background: var(--white);
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  -webkit-overflow-scrolling: touch;
+}
+
+.modal-close {
+  position: fixed;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(16, 47, 68, 0.55);
+  color: var(--white);
+  font-size: 26px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.modal-hero {
+  position: relative;
+  height: 240px;
+  flex-shrink: 0;
+}
+
+.modal-hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(16, 47, 68, 0.15) 0%,
+    rgba(16, 47, 68, 0.85) 100%
+  );
+}
+
+.modal-hero-content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+}
+
+.modal-status {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--white);
+  margin-bottom: 10px;
+}
+
+.modal-status--ultimas-vagas {
+  background: var(--gold);
+  color: var(--dark-deeper);
+}
+
+.modal-status--em-breve {
+  background: transparent;
+  border: 1.5px solid var(--gold-soft);
+  color: var(--gold-soft);
+}
+
+.modal-status--solo {
+  color: var(--coral);
+  background: transparent;
+  border: 1.5px solid var(--coral);
+  padding: 5px 12px;
+}
+
+.modal-hero-content h2 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  color: var(--white);
+  margin-bottom: 6px;
+  line-height: 1.15;
+}
+
+.modal-hero-content h2 em {
+  font-style: normal;
+  color: var(--gold-soft);
+}
+
+.modal-titulo-solo {
+  font-family: var(--font-display);
+  font-size: 24px;
+  color: var(--dark);
+  margin-bottom: 14px;
+  line-height: 1.2;
+}
+
+.modal-titulo-solo em {
+  font-style: normal;
+  color: var(--coral);
+}
+
+.modal-periodo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--white);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.modal-periodo span {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.18);
+  padding: 3px 10px;
+  border-radius: 100px;
+}
+
+.modal-body {
+  padding: 24px 20px 8px;
+  flex: 1;
+}
+
+.modal-resumo {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.modal-texto {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.modal-nota {
+  font-size: 14px;
+  color: var(--dark);
+  border-left: 3px solid var(--gold);
+  padding-left: 14px;
+  margin: 20px 0;
+}
+
+.modal-secao {
+  margin-top: 32px;
+  padding-top: 28px;
+  border-top: 1px solid #ece9e2;
+}
+
+.modal-secao h3 {
+  font-family: var(--font-display);
+  font-size: 17px;
+  color: var(--dark);
+  margin-bottom: 18px;
+}
+
+.modal-grupos {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.modal-grupo h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--coral);
+  margin-bottom: 8px;
+}
+
+.modal-grupo ul,
+.modal-lista-simples {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.modal-grupo li,
+.modal-lista-simples li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.55;
+}
+
+.modal-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.modal-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.modal-faq-pergunta {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--dark);
+  margin-bottom: 4px;
+}
+
+.modal-faq-resposta {
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+.modal-footer {
+  position: sticky;
+  bottom: 0;
+  background: var(--white);
+  padding: 16px 20px;
+  border-top: 1px solid #ece9e2;
+}
+
+.modal-cta {
+  width: 100%;
+  text-align: center;
+}
+
+/* ---------- Tablet / desktop: deixa de ser tela cheia ---------- */
+@media (min-width: 700px) {
+  .modal-overlay {
+    padding: 40px 20px;
+  }
+
+  .modal-card {
+    max-width: 640px;
+    height: auto;
+    max-height: 88vh;
+    border-radius: 20px;
+    box-shadow: 0 40px 90px rgba(0, 0, 0, 0.35);
+  }
+
+  .modal-close {
+    position: absolute;
+  }
+
+  .modal-hero {
+    height: 280px;
+    border-radius: 20px 20px 0 0;
+  }
+
+  .modal-body {
+    padding: 30px 36px 8px;
+  }
+
+  .modal-footer {
+    padding: 18px 36px;
+    border-radius: 0 0 20px 20px;
+  }
+
+  .modal-hero-content {
+    padding: 26px 32px;
+  }
+
+  .modal-hero-content h2 {
+    font-size: 30px;
+  }
+
+  .modal-cta {
+    width: auto;
+    min-width: 260px;
+    display: inline-block;
+  }
+}

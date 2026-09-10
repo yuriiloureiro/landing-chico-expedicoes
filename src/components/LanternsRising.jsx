@@ -1,7 +1,8 @@
+import { useMemo } from 'react';
 import './LanternsRising.css';
 
 // Signature visual element: small paper lanterns drifting upward.
-// count controls density, tone lets us adapt brightness for light/dark sections.
+// count controls density.
 function Lantern({ style }) {
   return (
     <svg className="lantern" style={style} viewBox="0 0 24 32" width="24" height="32" aria-hidden="true">
@@ -13,14 +14,27 @@ function Lantern({ style }) {
   );
 }
 
+// Gerador pseudo-aleatório determinístico: mesma sequência a cada render,
+// então as lanternas não "pulam" de lugar quando o componente re-renderiza.
+function seeded(seed) {
+  let s = seed;
+  return () => {
+    s = (s * 9301 + 49297) % 233280;
+    return s / 233280;
+  };
+}
+
 export default function LanternsRising({ count = 8, className = '' }) {
-  const lanterns = Array.from({ length: count }, (_, i) => {
-    const left = (i / count) * 100 + Math.random() * (100 / count) * 0.6;
-    const delay = -(Math.random() * 18);
-    const duration = 16 + Math.random() * 10;
-    const scale = 0.6 + Math.random() * 0.7;
-    return { left, delay, duration, scale, id: i };
-  });
+  const lanterns = useMemo(() => {
+    const rand = seeded(count * 7 + 13);
+    return Array.from({ length: count }, (_, i) => ({
+      id: i,
+      left: (i / count) * 100 + rand() * (100 / count) * 0.6,
+      delay: -(rand() * 18),
+      duration: 16 + rand() * 10,
+      scale: 0.6 + rand() * 0.7,
+    }));
+  }, [count]);
 
   return (
     <div className={`lanterns-rising ${className}`} aria-hidden="true">

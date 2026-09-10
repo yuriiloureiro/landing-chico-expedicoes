@@ -1,16 +1,45 @@
-# React + Vite
+# Tô Por Aí no Mundo — site das expedições
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React + Vite + React Router. Deploy na Vercel.
 
-Currently, two official plugins are available:
+## Rodar local
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```bash
+npm install
+cp .env.example .env   # e preencha VITE_WEB3FORMS_KEY
+npm run dev
+```
 
-## React Compiler
+## Adicionar ou editar uma expedição
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Tudo fica em `src/data/expedicoes.js`. Cada objeto vira automaticamente:
 
-## Expanding the ESLint configuration
+- um card na home (`/#expedicoes`)
+- uma página em `/expedicoes/<slug>`
+- um link no rodapé
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Campos principais:
+
+| campo | obrigatório | descrição |
+| --- | --- | --- |
+| `slug` | sim | vira a URL |
+| `nome`, `ano` | sim | |
+| `status` | sim | `ultimas-vagas`, `aberta` ou `em-breve` |
+| `periodo`, `duracao` | não | texto livre |
+| `imagemCard`, `imagemHero` | não | importar de `src/assets/images/expedicoes/` |
+| `videoId` | não | ID do YouTube (vídeo do Chico). Sem ele, mostra `imagemSecundaria` |
+| `videoFormato` | não | `vertical` (Reels) ou `horizontal` |
+| `incluso`, `naoIncluso`, `obrigatorios`, `dicas`, `faq` | não | seções aparecem só se preenchidas |
+| `mensagemWhatsApp` | não | texto pré-preenchido no botão |
+
+Expedições com `status: "em-breve"` mostram só o formulário de lista de espera.
+
+## Formulários
+
+Usam o [Web3Forms](https://web3forms.com) (grátis, entrega por e-mail). Crie a chave com o e-mail do Chico,
+coloque em `.env` (local) e em **Settings → Environment Variables** na Vercel como `VITE_WEB3FORMS_KEY`.
+Sem a chave, o formulário mostra erro e aponta pro WhatsApp.
+
+## Deploy
+
+`vercel.json` já tem o rewrite pra SPA (rotas diretas como `/expedicoes/...` funcionam).

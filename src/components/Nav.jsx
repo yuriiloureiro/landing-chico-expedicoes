@@ -1,13 +1,18 @@
 import { useEffect, useState } from "react";
-import logo from "../assets/images/Logo-toporainomundo-chico.png";
+import logo from "../assets/images/logo.png";
+import { linkWhatsApp } from "../data/expedicoes";
 import "./Nav.css";
 
 const links = [
+  { href: "#expedicoes", label: "Expedições" },
   { href: "#sobre", label: "O Chico" },
   { href: "#experiencia", label: "A experiência" },
-  { href: "#expedicoes", label: "Expedições" },
   { href: "#contato", label: "Contato" },
 ];
+
+const WPP = linkWhatsApp(
+  "Oi Chico! Vi o site e quero saber mais sobre as expedições.",
+);
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -15,6 +20,7 @@ export default function Nav() {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
+    onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -27,7 +33,7 @@ export default function Nav() {
     >
       <div className="container nav-inner">
         <a href="#inicio" className="nav-brand" onClick={handleClick}>
-          <img src={logo} alt="Tô Por Aí no Mundo" />
+          <img src={logo} alt="Tô Por Aí no Mundo" width="60" height="60" />
         </a>
 
         <nav className="nav-links">
@@ -66,7 +72,7 @@ export default function Nav() {
             </svg>
           </a>
           <a
-            href="https://wa.me/5513982026838"
+            href={WPP}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary nav-cta"
@@ -94,7 +100,7 @@ export default function Nav() {
           </a>
         ))}
         <a
-          href="https://wa.me/5513982026838"
+          href={WPP}
           target="_blank"
           rel="noopener noreferrer"
           className="btn-primary nav-cta-mobile"

@@ -1,0 +1,18 @@
+.notfound {
+  min-height: 70vh;
+  display: flex;
+  align-items: center;
+  padding: 140px 0 80px;
+  text-align: center;
+}
+
+.notfound .section-title {
+  font-size: clamp(30px, 4vw, 48px);
+  margin: 14px 0 16px;
+}
+
+.notfound p:not(.eyebrow) {
+  color: var(--muted);
+  font-size: 17px;
+  margin-bottom: 30px;
+}

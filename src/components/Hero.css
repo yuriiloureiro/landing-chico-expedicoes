@@ -37,7 +37,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 1020px;
+  max-width: 1240px;
 }
 
 .hero-eyebrow {
@@ -46,9 +46,9 @@
 }
 
 .hero-title {
-  font-size: clamp(40px, 6.2vw, 80px);
+  font-size: clamp(36px, 5.4vw, 68px);
   color: var(--white);
-  margin-bottom: 30px;
+  margin-bottom: 24px;
   letter-spacing: -0.02em;
 }
 
@@ -70,4 +70,29 @@
   .hero-sub {
     font-size: 17px;
   }
+  .hero-actions {
+    flex-direction: column;
+    gap: 18px;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.hero-link {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 15px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: color 0.2s ease;
+}
+
+.hero-link:hover {
+  color: var(--gold-soft);
 }

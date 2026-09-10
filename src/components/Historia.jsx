@@ -45,17 +45,17 @@ export default function Historia() {
         <div className="historia-text">
           <p className="eyebrow historia-eyebrow">Quem te leva</p>
           <h2 className="section-title historia-title">
-            Muito além de um roteiro. Uma expedição criada por quem realmente
-            conhece a Tailândia.
+            Muito além de um roteiro. Expedições criadas por quem realmente
+            conhece cada destino.
           </h2>
           <p>
-            Você não vai viajar com alguem que pesquisou o destino na internet.
-            Vai viajar com quem conhece a Tailândia na prática e transformou
-            anos de experiência em uma expedição cuidadosamente planejada.
+            Você não vai viajar com alguém que pesquisou o destino na internet.
+            Vai viajar com quem conhece o lugar na prática e transformou anos de
+            experiência em expedições cuidadosamente planejadas.
           </p>
           <p>
             Com mais de 50 roteiros internacionais criados, milhares de
-            viajantes impactados e uma comunidade com mais de 28 mil pessoas
+            viajantes impactados e uma comunidade com mais de 25 mil pessoas
             acompanhando cada nova aventura, o Chico leva para a expedição muito
             mais do que organização: leva experiência.
           </p>
@@ -66,7 +66,7 @@ export default function Historia() {
             experiências que dificilmente quem viaja sozinho conseguiria viver.
           </p>
           <p>
-            Enquando você aproveita a Tailândia, existe alguem experiente
+            Enquanto você aproveita a viagem, existe alguém experiente
             cuidando dos detalhes para que sua única preocupação seja viver cada
             momento.
           </p>

@@ -4,17 +4,17 @@ const pilares = [
   {
     titulo: "Um grupo na medida certa",
     texto:
-      "O grupo é pensado para que todos possam aproveiar a viagem, criar conexões e receber o suporte necessário do inicio ao fim.",
+      "O grupo é pensado para que todos possam aproveitar a viagem, criar conexões e receber o suporte necessário do início ao fim.",
   },
   {
     titulo: "Chico junto o tempo todo",
     texto:
-      "Não é um guia contratado no destino. É quem estudou o país por anos, do seu lado em cada dia.",
+      "Não é um guia contratado no destino. É quem conhece o destino por dentro, do seu lado em cada dia.",
   },
   {
     titulo: "Lugares que só quem vive lá conhece",
     texto:
-      "Templos, mercados e cantos da Tailândia que não aparecem em roteiro de agência genérica.",
+      "Templos, mercados, vilarejos e cantos que não aparecem em roteiro de agência genérica.",
   },
   {
     titulo: "Logística 100% resolvida",
@@ -24,12 +24,12 @@ const pilares = [
   {
     titulo: "Segurança em primeiro lugar",
     texto:
-      "Experiente em expedições e conhecimento local aplicados pra você viajar tranquilo e sem susto.",
+      "Experiência em expedições e conhecimento local aplicados pra você viajar tranquilo e sem susto.",
   },
   {
-    titulo: "O momento mais esperado da viagem",
+    titulo: "Momentos que ficam pra sempre",
     texto:
-      "O céu se enchendo de milhares de lanternas, uma cena que arrepia até quem achava que já tinha visto de tudo.",
+      "Um céu cheio de lanternas, o pôr do sol nas dunas, uma cena que arrepia até quem achava que já tinha visto de tudo.",
   },
 ];
 

@@ -11,19 +11,13 @@ const depoimentos = [
     nome: "Lilian Campos",
     expedicao: "Festival das Lanternas 2025",
     texto:
-      "Chico! Eu gostei  muito da expedição na Tailândia. A energia do lugar, somada as paisagens lindas e o mar muito azul. Chiang May foi o ponto alto, com o Santuário de elefantes e Festival das Lanternas. Acho que pode melhorar o hotel devido a localização. Phi Phi é surreal. Valeu por todo o suporte antes e durante toda a viagem. Como dica, eu trocarei a Bamboo Island por outra ilha menos lotada 😊",
+      "Chico! Eu gostei  muito da expedição na Tailândia. A energia do lugar, somada as paisagens lindas e o mar muito azul. Chiang Mai foi o ponto alto, com o Santuário de elefantes e Festival das Lanternas. Phi Phi é surreal. Valeu por todo o suporte antes e durante toda a viagem.",
   },
   {
     nome: "José Alcione",
     expedicao: "Festival das Lanternas 2025",
     texto:
       "Bom dia meu querido Chico. Passando aqui para lhe agradecer e parabenizar por essa grande expedição de 2025 da Tailândia, onde pude conhecer o festival de lanternas, ter ido pra krabi e ter conhecido a ilha de koh phi phi, a railay beach, enfim, vários outros pontos turísticos da Tailândia, sendo guiado por você, e esse ano estarei de volta, esse ano to aí colcado com você de novo, parabéns e sucesso!",
-  },
-  {
-    nome: "Ariele Lúcio",
-    expedicao: "Compra de passagens aéreas",
-    texto:
-      "Uma empresa maravilhosa, que preza respeito aos clientes! Atendimento excelente, uso com frequência e indico para todos os meus amigos. Chico é muito atencioso e prestativo, do início ao fim, dando todo suporte necessário, inclusive, já arcou com prejuízo por conta de erro da companhia aérea. Nessa ocasião, me deu respaldo completo e resolveu a situação de forma imediata! Uma empresa muito idônea, super indico e recomendo!!!! Nota milllll!!!! ❤️",
   },
   {
     nome: "Virna Farias",
