@@ -1,20 +1,38 @@
-import { useState } from "react";
-import { useParams, Link, Navigate } from "react-router-dom";
-import useSEO from "../hooks/useSEO";
-import { getExpedicao, linkWhatsApp, STATUS_LABEL } from "../data/expedicoes";
+import { useParams } from "react-router-dom";
+import { motion } from "framer-motion";
+import { expedicoes, STATUS_LABEL, VIDEO_PADRAO } from "../data/expedicoes";
 import Formulario from "../components/Formulario";
 import FAQ from "../components/FAQ";
-import LanternsRising from "../components/LanternsRising";
+import ScrollReveal from "../components/ScrollReveal";
+import RedesSociais from "../components/RedesSociais";
+import NotFound from "./NotFound";
 import "./ExpedicaoPage.css";
+
+const ACCENTS = ["accent-gold", "accent-dark", "accent-coral"];
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+  }),
+};
 
 function Check() {
   return (
-    <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
-      <circle cx="10" cy="10" r="10" fill="var(--gold)" />
+    <svg
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      aria-hidden="true"
+      className="pagina-icon"
+    >
+      <circle cx="10" cy="10" r="10" fill="currentColor" />
       <path
         d="M6 10.5l2.5 2.5L14 7.5"
         fill="none"
-        stroke="var(--dark-deeper)"
+        stroke="var(--white)"
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -25,18 +43,24 @@ function Check() {
 
 function Cross() {
   return (
-    <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true">
+    <svg
+      viewBox="0 0 20 20"
+      width="16"
+      height="16"
+      aria-hidden="true"
+      className="pagina-icon"
+    >
       <circle
         cx="10"
         cy="10"
         r="9"
         fill="none"
-        stroke="#c9c4b9"
+        stroke="currentColor"
         strokeWidth="1.5"
       />
       <path
         d="M7 7l6 6M13 7l-6 6"
-        stroke="#9a958a"
+        stroke="currentColor"
         strokeWidth="1.8"
         strokeLinecap="round"
       />
@@ -44,303 +68,329 @@ function Cross() {
   );
 }
 
-function ListaGrupos({ grupos }) {
+function Grupos({ grupos }) {
   return (
-    <div className="exp-grupos">
-      {grupos.map((g) => (
-        <div className="exp-grupo" key={g.titulo}>
-          <h3>{g.titulo}</h3>
+    <div className="pagina-cards-grid">
+      {grupos.map((g, i) => (
+        <ScrollReveal
+          as="div"
+          key={g.titulo}
+          delay={(i % 3) * 0.1}
+          className="pagina-card"
+        >
+          <div className="pagina-card-header">
+            <span
+              className={`pagina-card-icone ${ACCENTS[i % ACCENTS.length]}`}
+            >
+              <Check />
+            </span>
+            <h4>{g.titulo}</h4>
+          </div>
           <ul>
             {g.itens.map((item) => (
               <li key={item}>
-                <Check />
                 <span>{item}</span>
               </li>
             ))}
           </ul>
+        </ScrollReveal>
+      ))}
+    </div>
+  );
+}
+
+function NaoInclusoCard({ itens }) {
+  return (
+    <div className="pagina-card pagina-card--escuro">
+      <div className="pagina-card-header">
+        <span className="pagina-card-icone pagina-card-icone--claro">
+          <Cross />
+        </span>
+        <h4>Não incluso na expedição</h4>
+      </div>
+      <div className="pagina-chips">
+        {itens.map((item) => (
+          <span className="pagina-chip" key={item}>
+            {item}
+          </span>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function ObrigatoriosCard({ itens }) {
+  return (
+    <div className="pagina-card pagina-checklist">
+      {itens.map((item) => (
+        <div className="pagina-checklist-item" key={item}>
+          <span className="pagina-card-icone accent-gold">
+            <Check />
+          </span>
+          <span>{item}</span>
         </div>
       ))}
     </div>
   );
 }
 
-function VideoChico({ videoId, formato = "vertical", nome }) {
-  const [playing, setPlaying] = useState(false);
-  const vertical = formato === "vertical";
-  return (
-    <div
-      className={`exp-video ${vertical ? "exp-video--vertical" : "exp-video--horizontal"}`}
-    >
-      {playing ? (
-        <iframe
-          src={`https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0`}
-          title={`Chico apresenta: ${nome}`}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
-      ) : (
-        <button
-          className="exp-video-cover"
-          onClick={() => setPlaying(true)}
-          aria-label="Assistir ao vídeo do Chico sobre essa expedição"
-          style={{
-            backgroundImage: `url(https://img.youtube.com/vi/${videoId}/hqdefault.jpg)`,
-          }}
-        >
-          <span className="exp-video-play">
-            <svg
-              viewBox="0 0 24 24"
-              width="26"
-              height="26"
-              fill="currentColor"
-              aria-hidden="true"
-            >
-              <path d="M8 5v14l11-7z" />
-            </svg>
-          </span>
-        </button>
-      )}
-    </div>
-  );
-}
-
 export default function ExpedicaoPage() {
   const { slug } = useParams();
-  const exp = getExpedicao(slug);
+  const expedicao = expedicoes.find((e) => e.slug === slug);
 
-  useSEO({
-    title: exp ? `${exp.nome} ${exp.ano}` : "Expedição",
-    description: exp?.resumo,
-    image: exp?.imagemCard
-      ? window.location.origin + exp.imagemCard
-      : undefined,
-    url: window.location.href,
-  });
+  if (!expedicao) return <NotFound />;
 
-  if (!exp) return <Navigate to="/404" replace />;
+  const emBreve = expedicao.status === "em-breve";
+  const esgotada = expedicao.status === "esgotada";
+  const video = expedicao.video || VIDEO_PADRAO;
+  const nomeExibicao = expedicao.nomeCurto || expedicao.nome;
 
-  const emBreve = exp.status === "em-breve";
-  const wpp = linkWhatsApp(
-    exp.mensagemWhatsApp ||
-      `Oi Chico! Quero entrar na lista de espera da expedição ${exp.nome} ${exp.ano}.`,
-  );
+  const fichaItems = [
+    { label: "Destino", valor: expedicao.destino },
+    { label: "Ano", valor: expedicao.ano },
+    { label: "Duração", valor: expedicao.duracao },
+    { label: "Quando", valor: expedicao.periodo || expedicao.periodoNota },
+  ].filter((item) => item.valor);
+
+  const formularioTitulo = emBreve
+    ? "Entrar na lista de espera"
+    : esgotada
+      ? "Quero saber sobre a próxima edição"
+      : "Quero garantir minha vaga";
+
+  const formularioSubtitulo = emBreve
+    ? "Seja o primeiro a saber quando essa expedição abrir."
+    : esgotada
+      ? "Deixe seus dados e o Chico te avisa assim que abrir uma nova turma."
+      : "Preencha seus dados e o Chico entra em contato pra alinhar os próximos passos.";
+
+  const temNaoIncluso = Boolean(expedicao.naoIncluso);
+  const temObrigatorios = Boolean(expedicao.obrigatorios);
+  const temColunaDupla = temNaoIncluso && temObrigatorios;
 
   return (
-    <article className="exp">
-      {/* ---------- HERO ---------- */}
-      <header className={`exp-hero ${emBreve ? "exp-hero--breve" : ""}`}>
-        {exp.imagemHero && (
-          <img
-            src={exp.imagemHero}
-            alt=""
-            className="exp-hero-bg"
-            style={{ objectPosition: exp.imagemHeroPosicao || "center" }}
-          />
-        )}
-        <div className="exp-hero-overlay" />
-        {emBreve && <LanternsRising count={8} />}
+    <div className="pagina-expedicao">
+      <section className="pagina-hero">
+        <video
+          className={`pagina-hero-bg${esgotada ? " pagina-hero-bg--esgotada" : ""}`}
+          src={video}
+          poster={expedicao.imagemHero}
+          style={{ objectPosition: expedicao.imagemHeroPosicao || "center" }}
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
+        <div className="pagina-hero-overlay" />
 
-        <div className="container exp-hero-content">
-          <Link to="/#expedicoes" className="exp-voltar">
-            ← Todas as expedições
-          </Link>
-          <span className={`exp-status exp-status--${exp.status}`}>
-            {STATUS_LABEL[exp.status]}
-          </span>
-          <h1 className="section-title exp-title">
-            {exp.nome} <em>{exp.ano}</em>
-          </h1>
-          {exp.periodo && (
-            <p className="exp-periodo">
-              {exp.periodo}
-              {exp.duracao && (
-                <span className="exp-duracao">{exp.duracao}</span>
-              )}
-              {exp.periodoNota && (
-                <span className="exp-periodo-nota">{exp.periodoNota}</span>
-              )}
-            </p>
-          )}
-          <p className="exp-resumo">{exp.resumo}</p>
-          <div className="exp-hero-actions">
-            <a
-              href={wpp}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-primary"
+        {esgotada && <span className="pagina-carimbo">Esgotado</span>}
+
+        <div className="container pagina-hero-content">
+          {(expedicao.periodo || expedicao.periodoNota) && (
+            <motion.p
+              className="pagina-hero-eyebrow"
+              initial="hidden"
+              animate="visible"
+              custom={0}
+              variants={fadeUp}
             >
-              {emBreve
-                ? "Avisar no WhatsApp quando abrir"
-                : "Falar com o Chico no WhatsApp"}
-            </a>
-            <a href="#contato" className="exp-link-form">
-              {emBreve
-                ? "ou deixar meu contato"
-                : "ou deixar meu contato pra ele me chamar"}
-            </a>
-          </div>
-        </div>
-      </header>
+              {expedicao.periodo || expedicao.periodoNota}
+            </motion.p>
+          )}
 
-      {/* ---------- EM BREVE: só formulário ---------- */}
-      {emBreve ? (
-        <section className="exp-secao exp-contato" id="contato">
-          <div className="container exp-contato-grid">
-            <div>
-              <p className="eyebrow">Lista de espera</p>
-              <h2 className="section-title exp-secao-titulo">
-                O Chico está preparando essa expedição.
-              </h2>
-              <p className="exp-texto">
-                Deixe seu contato e, assim que as datas fecharem, você recebe os
-                detalhes antes de todo mundo. Quem está na lista tem prioridade
-                nas vagas.
-              </p>
-            </div>
-            <div className="exp-contato-form">
-              <Formulario expedicao={exp} tipo="espera" />
+          <motion.h1
+            className="pagina-hero-titulo"
+            initial="hidden"
+            animate="visible"
+            custom={0.1}
+            variants={fadeUp}
+          >
+            <em>Expedição</em>
+            <span className="pagina-hero-nome">{nomeExibicao}</span>
+            <span className="pagina-hero-ano">{expedicao.ano}</span>
+          </motion.h1>
+
+          <motion.span
+            className="pagina-divisor"
+            initial="hidden"
+            animate="visible"
+            custom={0.2}
+            variants={fadeUp}
+          />
+
+          {expedicao.resumo && (
+            <motion.p
+              className="pagina-hero-subtitulo"
+              initial="hidden"
+              animate="visible"
+              custom={0.3}
+              variants={fadeUp}
+            >
+              {expedicao.resumo}
+            </motion.p>
+          )}
+        </div>
+      </section>
+
+      {fichaItems.length > 0 && (
+        <ScrollReveal as="div" className="container pagina-ficha-wrap">
+          <div className="pagina-ficha">
+            {fichaItems.map((item) => (
+              <div className="pagina-ficha-item" key={item.label}>
+                <span className="pagina-ficha-label">{item.label}</span>
+                <span className="pagina-ficha-valor">{item.valor}</span>
+              </div>
+            ))}
+          </div>
+        </ScrollReveal>
+      )}
+
+      {expedicao.descricao && (
+        <section className="pagina-bloco">
+          <div className="container">
+            <ScrollReveal as="div" className="pagina-prosa">
+              {expedicao.descricao.map((p) => (
+                <p className="pagina-texto" key={p}>
+                  {p}
+                </p>
+              ))}
+
+              {!emBreve && (
+                <p className="pagina-nota">
+                  O roteiro completo e os valores são apresentados pelo Chico
+                  numa conversa rápida por chamada, sem compromisso.
+                </p>
+              )}
+            </ScrollReveal>
+          </div>
+        </section>
+      )}
+
+      {expedicao.porqueExpedicao && (
+        <section className="pagina-bloco pagina-bloco--bg">
+          <div className="container">
+            <div className="pagina-porque-container">
+              <ScrollReveal as="div" className="pagina-porque-header">
+                <p className="eyebrow">Por que expedição</p>
+                <h2>
+                  Por que viver {nomeExibicao} <em>em formato de expedição?</em>
+                </h2>
+              </ScrollReveal>
+
+              <div className="pagina-porque-grid">
+                <ScrollReveal
+                  as="div"
+                  className="pagina-porque-card pagina-porque-card--negativo"
+                >
+                  <span className="pagina-porque-tag">Por conta própria</span>
+                  <h3>Você resolve tudo</h3>
+                  <ul>
+                    {expedicao.porqueExpedicao.semGuia.map((item) => (
+                      <li key={item}>
+                        <Cross />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </ScrollReveal>
+                <ScrollReveal
+                  as="div"
+                  delay={0.12}
+                  className="pagina-porque-card pagina-porque-card--positivo"
+                >
+                  <span className="pagina-porque-tag">Com o Chico</span>
+                  <h3>Você só precisa embarcar</h3>
+                  <ul>
+                    {expedicao.porqueExpedicao.comChico.map((item) => (
+                      <li key={item}>
+                        <Check />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </ScrollReveal>
+              </div>
             </div>
           </div>
         </section>
-      ) : (
-        <>
-          {/* ---------- SOBRE + VÍDEO ---------- */}
-          <section className="exp-secao exp-sobre">
-            <div className="container">
-              <div className="exp-sobre-texto">
-                <p className="eyebrow">A expedição</p>
-                <h2 className="section-title exp-secao-titulo">
-                  {exp.videoId
-                    ? "O Chico explica como vai ser"
-                    : "Como vai ser"}
-                </h2>
-              </div>
-              {exp.videoId ? (
-                <div className="exp-sobre-video">
-                  <VideoChico
-                    videoId={exp.videoId}
-                    formato={exp.videoFormato}
-                    nome={exp.nome}
-                  />
-                </div>
-              ) : (
-                exp.imagemSecundaria && (
-                  <div className="exp-sobre-foto exp-sobre-foto--full">
-                    <img src={exp.imagemSecundaria} alt="" loading="lazy" />
-                  </div>
-                )
+      )}
+
+      {expedicao.incluso && (
+        <section className="pagina-bloco">
+          <div className="container">
+            <ScrollReveal as="h2" className="pagina-secao-titulo">
+              O que está incluso
+            </ScrollReveal>
+            <Grupos grupos={expedicao.incluso} />
+          </div>
+        </section>
+      )}
+
+      {(temNaoIncluso || temObrigatorios) && (
+        <section className="pagina-bloco pagina-bloco--bg">
+          <div className="container">
+            <div
+              className={`pagina-duas-colunas${temColunaDupla ? "" : " pagina-duas-colunas--unica"}`}
+            >
+              {temNaoIncluso && (
+                <ScrollReveal as="div" className="pagina-coluna">
+                  <h2 className="pagina-secao-titulo pagina-secao-titulo--esquerda">
+                    O que não está incluso
+                  </h2>
+                  <NaoInclusoCard itens={expedicao.naoIncluso} />
+                </ScrollReveal>
               )}
-            </div>
-          </section>
-
-          {/* ---------- INCLUSO / NÃO INCLUSO ---------- */}
-          {(exp.incluso || exp.naoIncluso) && (
-            <section className="exp-secao exp-incluso">
-              <div className="container">
-                {exp.incluso && (
-                  <>
-                    <div className="exp-secao-header">
-                      <p className="eyebrow">O que está incluso</p>
-                      <h2 className="section-title exp-secao-titulo">
-                        Você só precisa aparecer
-                      </h2>
-                    </div>
-                    <ListaGrupos grupos={exp.incluso} />
-                  </>
-                )}
-
-                {exp.naoIncluso && (
-                  <div className="exp-nao-incluso">
-                    <h3>O que não está incluso</h3>
-                    <ul>
-                      {exp.naoIncluso.map((item) => (
-                        <li key={item}>
-                          <Cross />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-              </div>
-            </section>
-          )}
-
-          {/* ---------- OBRIGATÓRIOS ---------- */}
-          {exp.obrigatorios && (
-            <section className="exp-secao exp-obrigatorios">
-              <div className="container exp-obrigatorios-inner">
-                <div>
-                  <p className="eyebrow">Antes de embarcar</p>
-                  <h2 className="section-title exp-secao-titulo">
+              {temObrigatorios && (
+                <ScrollReveal as="div" delay={0.1} className="pagina-coluna">
+                  <h2 className="pagina-secao-titulo pagina-secao-titulo--esquerda">
                     Itens obrigatórios
                   </h2>
-                </div>
-                <ul>
-                  {exp.obrigatorios.map((item) => (
-                    <li key={item}>
-                      <Check />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </section>
-          )}
-
-          {/* ---------- DICAS ---------- */}
-          {exp.dicas && (
-            <section className="exp-secao exp-dicas">
-              <div className="container">
-                <div className="exp-secao-header">
-                  <p className="eyebrow">Dicas do Chico</p>
-                  <h2 className="section-title exp-secao-titulo">
-                    O que levar na mochila
-                  </h2>
-                </div>
-                <ListaGrupos grupos={exp.dicas} />
-              </div>
-            </section>
-          )}
-
-          {/* ---------- FAQ ---------- */}
-          {exp.faq && (
-            <FAQ
-              itens={exp.faq}
-              eyebrow="Tá com dúvida?"
-              titulo="O Chico responde"
-            />
-          )}
-
-          {/* ---------- CONTATO ---------- */}
-          <section className="exp-secao exp-contato" id="contato">
-            <div className="container exp-contato-grid">
-              <div>
-                <p className="eyebrow">Vamos conversar?</p>
-                <h2 className="section-title exp-secao-titulo">
-                  Chame o Chico ou deixe seu contato.
-                </h2>
-                <p className="exp-texto">
-                  O jeito mais rápido é o WhatsApp. Se preferir, preencha ao
-                  lado e ele te chama pra marcar uma conversa rápida, sem
-                  compromisso.
-                </p>
-                <a
-                  href={wpp}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary"
-                >
-                  Falar com o Chico no WhatsApp
-                </a>
-              </div>
-              <div className="exp-contato-form">
-                <Formulario expedicao={exp} tipo="contato" />
-              </div>
+                  <ObrigatoriosCard itens={expedicao.obrigatorios} />
+                </ScrollReveal>
+              )}
             </div>
-          </section>
-        </>
+          </div>
+        </section>
       )}
-    </article>
+
+      {expedicao.dicas && (
+        <section className="pagina-bloco">
+          <div className="container">
+            <ScrollReveal as="h2" className="pagina-secao-titulo">
+              O que levar na mochila
+            </ScrollReveal>
+            <Grupos grupos={expedicao.dicas} />
+          </div>
+        </section>
+      )}
+
+      {expedicao.faq && (
+        <FAQ itens={expedicao.faq} eyebrow="Dúvidas" titulo="Tá com dúvida?" />
+      )}
+
+      <section className="pagina-formulario-wrap">
+        <div className="container pagina-formulario-inner">
+          <ScrollReveal as="div">
+            <p className="eyebrow">Seu próximo passo</p>
+            <h2 className="pagina-formulario-titulo">{formularioTitulo}</h2>
+            <span className="pagina-divisor" />
+            <p className="pagina-formulario-sub">{formularioSubtitulo}</p>
+          </ScrollReveal>
+
+          <ScrollReveal
+            as="div"
+            delay={0.15}
+            className="pagina-formulario-card"
+          >
+            <Formulario
+              expedicao={expedicao}
+              tipo={emBreve ? "espera" : "contato"}
+            />
+          </ScrollReveal>
+        </div>
+      </section>
+
+      <RedesSociais />
+    </div>
   );
 }

@@ -1,0 +1,97 @@
+.sem-preocupacao {
+  background: var(--bg);
+  padding: 100px 0;
+}
+
+.sem-preocupacao-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+.sp-card {
+  border-radius: 20px;
+  padding: 36px 32px;
+}
+
+.sp-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.sp-card h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  margin-bottom: 10px;
+}
+
+.sp-card p {
+  font-size: 14.5px;
+  line-height: 1.65;
+}
+
+/* Claro */
+.sp-card--claro {
+  background: var(--white);
+  border: 1px solid rgba(23, 73, 103, 0.1);
+}
+.sp-card--claro .sp-icone {
+  background: var(--bg);
+  color: var(--dark);
+}
+.sp-card--claro h3 {
+  color: var(--dark-deeper);
+}
+.sp-card--claro p {
+  color: var(--muted);
+}
+
+/* Escuro */
+.sp-card--escuro {
+  background: var(--dark-deeper);
+}
+.sp-card--escuro .sp-icone {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gold-soft);
+}
+.sp-card--escuro h3 {
+  color: var(--white);
+}
+.sp-card--escuro p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Dourado */
+.sp-card--gold {
+  background: var(--gold);
+}
+.sp-card--gold .sp-icone {
+  background: rgba(16, 47, 68, 0.12);
+  color: var(--dark-deeper);
+}
+.sp-card--gold h3 {
+  color: var(--dark-deeper);
+}
+.sp-card--gold p {
+  color: rgba(16, 47, 68, 0.75);
+}
+
+@media (max-width: 780px) {
+  .sem-preocupacao-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .sem-preocupacao {
+    padding: 70px 0;
+  }
+  .sp-card {
+    padding: 28px 24px;
+  }
+}

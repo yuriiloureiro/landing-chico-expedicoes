@@ -2,30 +2,33 @@
 // Para adicionar uma nova expedição, basta criar um objeto aqui.
 // Campos opcionais podem ser omitidos — a página se adapta.
 //
-// status: "ultimas-vagas" | "aberta" | "em-breve"
-// videoId: ID do YouTube (vídeo do Chico apresentando a expedição). Sem ele, a seção não aparece.
+// status: "ultimas-vagas" | "aberta" | "em-breve" | "esgotada"
+// video: vídeo de paisagem do destino, importado de src/assets/videos/expedicoes/.
+//        Sem ele, a página usa VIDEO_PADRAO.
 // videoFormato: "vertical" (Reels/Shorts) ou "horizontal"
+// porqueExpedicao: { semGuia: [...], comChico: [...] } — comparação "por conta
+//   própria vs com o Chico". Opcional — sem ele a seção não aparece na página.
 
-import lanternas2026Card from "../assets/images/expedicoes/lanternas-2027-card.webp";
 import lanternas2026Hero from "../assets/images/banner.webp";
-import lanternasCard from "../assets/images/chico-expedicao-tailandia.webp";
+import lanternasCard from "../assets/images/expedicoes/lanternas-card.webp";
 import carnavalCard from "../assets/images/expedicoes/carnaval-card.webp";
-import carnavalHero from "../assets/images/expedicoes/carnaval-hero.webp";
-import carnaval2 from "../assets/images/expedicoes/carnaval-2.webp";
 import lencoisCard from "../assets/images/expedicoes/lencois-card.webp";
-import lencoisHero from "../assets/images/expedicoes/lencois-hero.webp";
-import lencois2 from "../assets/images/expedicoes/lencois-2.webp";
 import filipinasFoto from "../assets/images/expedicoes/filipinas-card.webp";
 import egitoFoto from "../assets/images/expedicoes/egito-card.webp";
 import chinaFoto from "../assets/images/expedicoes/china-card.webp";
 
+import videoCarnaval from "../assets/videos/expedicoes/carnaval.mp4";
+import videoLanternas from "../assets/videos/expedicoes/lanternas.mp4";
+import videoLencois from "../assets/videos/expedicoes/lencois.mp4";
+import videoFilipinas from "../assets/videos/expedicoes/filipinas.mp4";
+import videoEgito from "../assets/videos/expedicoes/egito.mp4";
+import videoChina from "../assets/videos/expedicoes/china.mp4";
+
 export const WHATSAPP = "5513982026838";
 
-// Vídeo usado nas expedições que ainda não têm o vídeo próprio gravado pelo Chico.
-// Quando ele gravar o vídeo de uma expedição, é só adicionar `videoId` (e `videoFormato`
-// se for diferente) direto no objeto dela, lá embaixo — o valor da expedição sempre
-// tem prioridade sobre esse padrão.
-export const VIDEO_PADRAO = "7-t5KniMERc";
+// Vídeo usado como reserva em qualquer expedição futura que ainda não tenha
+// seu próprio vídeo de paisagem cadastrado no campo `video` abaixo.
+export const VIDEO_PADRAO = videoLanternas;
 export const VIDEO_PADRAO_FORMATO = "horizontal";
 
 export function linkWhatsApp(mensagem) {
@@ -50,6 +53,51 @@ const DEPOIS_DA_MENSAGEM = {
     "O Chico marca uma conversa rápida por chamada com você, tira todas as dúvidas, explica os detalhes da expedição e, se fizer sentido pros dois lados, já encaminha os próximos passos da reserva.",
 };
 
+const PORQUE_LANTERNAS = {
+  semGuia: [
+    "Descobrir sozinho os prazos certos de visto, vacina da febre amarela e formulário TDAC",
+    "Encontrar o ponto certo pra ver as lanternas sem ficar preso no meio da multidão",
+    "Se virar em transporte e comunicação numa cidade que não fala português",
+    "Nenhum suporte se algo sair do combinado durante a viagem",
+  ],
+  comChico: [
+    "O Chico cuida de toda a logística e avisa exatamente o que levar e quando",
+    "Acesso aos melhores pontos pra viver o festival de pertinho, sem aperto",
+    "Grupo pequeno, com gente que também topa essa experiência",
+    "Acompanhamento do Chico do embarque ao desembarque",
+  ],
+};
+
+const PORQUE_CARNAVAL = {
+  semGuia: [
+    "Organizar 3 voos internos, transfers e itinerário entre Bangkok, Chiang Mai e Krabi sozinho",
+    "Não saber quais templos, mercados e passeios realmente valem a pena",
+    "Risco de cair em armadilha de turista ou pagar mais caro sem perceber",
+    "Nenhum suporte se algo sair do combinado durante a viagem",
+  ],
+  comChico: [
+    "O Chico já criou mais de 50 roteiros pela Tailândia e resolve toda a logística",
+    "Passeios selecionados a dedo: templos, ilhas, santuário de elefantes e mais",
+    "Grupo pequeno e acompanhamento do Chico do início ao fim",
+    "Suporte também na compra da passagem aérea",
+  ],
+};
+
+const PORQUE_LENCOIS = {
+  semGuia: [
+    "Se aventurar sozinho no trekking sem guia local especializado",
+    "Não saber onde ficar nos vilarejos ou como se planejar pros pontos de apoio sem rede",
+    "Carregar peso e itens errados na mochila por falta de orientação",
+    "Nenhum suporte em caso de imprevisto no meio da trilha",
+  ],
+  comChico: [
+    "Guia local especializado acompanha os 4 dias de trekking",
+    "Hospedagem e alimentação já organizadas em cada etapa do caminho",
+    "Grupo pequeno, ritmo pensado pra quem tem preparo físico moderado",
+    "Suporte do Chico do planejamento até a volta pra casa",
+  ],
+};
+
 export const expedicoes = [
   {
     slug: "tailandia-festival-das-lanternas-2026",
@@ -59,18 +107,19 @@ export const expedicoes = [
     destino: "Tailândia",
     periodo: "19 de novembro a 4 de dezembro de 2026",
     duracao: "16 dias",
-    status: "ultimas-vagas",
+    status: "esgotada",
     imagemCard: lanternasCard,
     imagemHero: lanternas2026Hero,
     imagemHeroPosicao: "center 30%",
     resumo:
-      "O momento mais esperado do ano: o céu de Chiang Mai se enchendo de milhares de lanternas. Últimas vagas para a expedição deste ano.",
+      "O momento mais esperado do ano: o céu de Chiang Mai se enchendo de milhares de lanternas. Vagas esgotadas para a expedição deste ano.",
     descricao: [
       "Uma expedição guiada de perto pelo Chico, que já criou mais de 50 roteiros pela Tailândia. Templos, mercados, ilhas e o festival que arrepia até quem achava que já tinha visto de tudo.",
-      "As últimas vagas estão abertas. Se você quer estar sob esse céu em novembro, chame o Chico agora.",
+      "As vagas desta edição já esgotaram. Fale com o Chico pra entrar na lista de espera ou saber sobre a próxima.",
     ],
-    videoId: "7-t5KniMERc",
+    video: videoLanternas,
     videoFormato: "horizontal",
+    porqueExpedicao: PORQUE_LANTERNAS,
     incluso: [
       {
         titulo: "Voos internos",
@@ -112,7 +161,7 @@ export const expedicoes = [
     ],
     faq: [PASSAGEM_AEREA, QUARTOS, DEPOIS_DA_MENSAGEM],
     mensagemWhatsApp:
-      "Oi Chico! Vi que ainda tem vaga na expedição do Festival das Lanternas 2026 e quero saber mais.",
+      "Oi Chico! Vi que a expedição do Festival das Lanternas 2026 está esgotada. Quero saber sobre a lista de espera ou a próxima edição.",
   },
 
   {
@@ -125,16 +174,17 @@ export const expedicoes = [
     duracao: "14 dias",
     status: "aberta",
     imagemCard: carnavalCard,
-    imagemHero: carnavalHero,
+    imagemHero: carnavalCard,
     imagemHeroPosicao: "center 40%",
-    imagemSecundaria: carnaval2,
     resumo:
       "E se o Carnaval de 2027 fosse na Tailândia? Dias de aventura, praias paradisíacas e experiências que você nunca vai esquecer.",
     descricao: [
       "Enquanto o Brasil está em folia, você vai estar entre templos, mercados flutuantes, santuário de elefantes e as águas mais azuis do sul da Tailândia.",
       "Tudo com o Chico ao seu lado: ele resolve a logística, abre portas e cuida dos detalhes pra que sua única preocupação seja viver cada momento.",
     ],
+    video: videoCarnaval,
     videoFormato: "vertical",
+    porqueExpedicao: PORQUE_CARNAVAL,
     incluso: [
       {
         titulo: "Voos internos",
@@ -207,16 +257,17 @@ export const expedicoes = [
     duracao: "8 dias",
     status: "aberta",
     imagemCard: lencoisCard,
-    imagemHero: lencoisHero,
+    imagemHero: lencoisCard,
     imagemHeroPosicao: "center 60%",
-    imagemSecundaria: lencois2,
     resumo:
       "Já se imaginou explorando os Lençóis Maranhenses na sua essência? Dias caminhando entre dunas e lagoas, dormindo em redários nos vilarejos.",
     descricao: [
       "Quatro dias de trekking pelo coração dos Lençóis, com guia local especializado, paradas para banho nas lagoas e noites em pontos de apoio nos vilarejos. Antes e depois, São Luís, Barreirinhas, Atins e Santo Amaro.",
       "É uma experiência física, mas acessível: com um pouco de preparo, dá pra viver. O maior percurso é o do terceiro dia, com 17 km.",
     ],
+    video: videoLencois,
     videoFormato: "vertical",
+    porqueExpedicao: PORQUE_LENCOIS,
     incluso: [
       {
         titulo: "Transfers e traslados",
@@ -312,7 +363,7 @@ export const expedicoes = [
     periodo: "Novembro de 2027",
     periodoNota: "Datas exatas em breve",
     status: "aberta",
-    imagemCard: lanternas2026Card,
+    imagemCard: lanternasCard,
     imagemHero: lanternas2026Hero,
     imagemHeroPosicao: "center 30%",
     resumo:
@@ -321,7 +372,9 @@ export const expedicoes = [
       "A expedição mais especial do Chico, que já levou dois grupos pra ver o céu de Chiang Mai se encher de luz. Em 2027 ela volta, e quem começa a se planejar agora consegue pagar aos poucos até lá.",
       "Chame o Chico pra reservar sua vaga e receber os detalhes assim que as datas fecharem.",
     ],
+    video: videoLanternas,
     videoFormato: "vertical",
+    porqueExpedicao: PORQUE_LANTERNAS,
     faq: [PASSAGEM_AEREA, QUARTOS, DEPOIS_DA_MENSAGEM],
     mensagemWhatsApp:
       "Oi Chico! Quero garantir minha vaga no Festival das Lanternas 2027 e começar a me planejar.",
@@ -338,6 +391,7 @@ export const expedicoes = [
     imagemHero: filipinasFoto,
     imagemHeroPosicao: "center 55%",
     resumo: "Entre na lista de espera e seja o primeiro a saber quando abrir.",
+    video: videoFilipinas,
   },
   {
     slug: "egito-2027",
@@ -350,6 +404,7 @@ export const expedicoes = [
     imagemHero: egitoFoto,
     imagemHeroPosicao: "center 78%",
     resumo: "Entre na lista de espera e seja o primeiro a saber quando abrir.",
+    video: videoEgito,
   },
   {
     slug: "china-2027",
@@ -362,6 +417,7 @@ export const expedicoes = [
     imagemHero: chinaFoto,
     imagemHeroPosicao: "center 45%",
     resumo: "Entre na lista de espera e seja o primeiro a saber quando abrir.",
+    video: videoChina,
   },
 ];
 
@@ -369,6 +425,7 @@ export const STATUS_LABEL = {
   "ultimas-vagas": "Últimas vagas",
   aberta: "Vagas abertas",
   "em-breve": "Em breve",
+  esgotada: "Esgotada",
 };
 
 export function getExpedicao(slug) {

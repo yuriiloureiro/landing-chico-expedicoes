@@ -1,3 +1,4 @@
+import ScrollReveal from "./ScrollReveal";
 import "./Depoimentos.css";
 
 const depoimentos = [
@@ -27,11 +28,28 @@ const depoimentos = [
   },
 ];
 
+function AspasIcone() {
+  return (
+    <svg
+      viewBox="0 0 32 24"
+      width="32"
+      height="24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M0 24V14.4C0 6.4 4.8 1.2 12.8 0l1.6 3.6C9.2 5.2 7.2 8 7.2 11.6h6.4V24H0zm18.4 0V14.4c0-8 4.8-13.2 12.8-14.4l1.6 3.6c-5.2 1.6-7.2 4.4-7.2 8h6.4V24H18.4z" />
+    </svg>
+  );
+}
+
 function Card({ item }) {
   const inicial = item.nome.charAt(0);
   return (
     <div className="depoimento-card">
-      <p className="depoimento-texto">“{item.texto}”</p>
+      <span className="depoimento-aspas">
+        <AspasIcone />
+      </span>
+      <p className="depoimento-texto">{item.texto}</p>
       <div className="depoimento-autor">
         <span className="depoimento-avatar">{inicial}</span>
         <div>
@@ -48,18 +66,18 @@ export default function Depoimentos() {
 
   return (
     <section className="depoimentos">
-      <div className="section-header">
+      <ScrollReveal as="div" className="section-header">
         <p className="eyebrow">Quem já viveu</p>
         <h2 className="section-title">Não é só o que eu digo</h2>
-      </div>
+      </ScrollReveal>
 
-      <div className="depoimentos-track">
+      <ScrollReveal as="div" className="depoimentos-track" y={16}>
         <div className="depoimentos-loop">
           {loop.map((item, i) => (
             <Card item={item} key={`${item.nome}-${i}`} />
           ))}
         </div>
-      </div>
+      </ScrollReveal>
     </section>
   );
 }

@@ -1,0 +1,92 @@
+.redes {
+  padding: 110px 0;
+  background: var(--bg);
+}
+
+.redes .section-header {
+  text-align: left;
+  max-width: 640px;
+  margin: 0 0 50px;
+}
+
+.redes-titulo {
+  font-size: clamp(28px, 3.4vw, 42px);
+  color: var(--dark);
+  margin: 12px 0 16px;
+}
+
+.redes-sub {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.redes-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.redes-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--dark-deeper);
+  border-radius: 18px;
+  padding: 26px;
+  color: var(--white);
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.redes-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(16, 47, 68, 0.22);
+}
+
+.redes-card-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 22px;
+}
+
+.redes-icone {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--gold-soft);
+}
+
+.redes-seta {
+  color: var(--gold-soft);
+  font-size: 18px;
+}
+
+.redes-card h3 {
+  font-family: var(--font-display);
+  font-size: 19px;
+  margin-bottom: 8px;
+}
+
+.redes-card p {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+@media (max-width: 860px) {
+  .redes-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 720px) {
+  .redes {
+    padding: 80px 0;
+  }
+}

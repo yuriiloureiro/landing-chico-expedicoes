@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import capaVideo from "../assets/images/capa-video.webp";
+import ScrollReveal from "./ScrollReveal";
 import "./Historia.css";
 
 const VIDEO_ID = "7-t5KniMERc";
@@ -21,7 +22,8 @@ export default function Historia() {
   return (
     <section className="historia" id="sobre">
       <div className="container historia-grid">
-        <div className="historia-video-wrap">
+        <ScrollReveal as="div" className="historia-video-wrap">
+          <span className="historia-video-blob" aria-hidden="true" />
           <button
             className="historia-video-cover"
             onClick={() => setOpen(true)}
@@ -40,9 +42,9 @@ export default function Historia() {
             </span>
           </button>
           <span className="historia-signature">Chico Castilho</span>
-        </div>
+        </ScrollReveal>
 
-        <div className="historia-text">
+        <ScrollReveal as="div" delay={0.15} className="historia-text">
           <p className="eyebrow historia-eyebrow">Quem te leva</p>
           <h2 className="section-title historia-title">
             Muito além de um roteiro. Expedições criadas por quem realmente
@@ -66,11 +68,13 @@ export default function Historia() {
             experiências que dificilmente quem viaja sozinho conseguiria viver.
           </p>
           <p>
-            Enquanto você aproveita a viagem, existe alguém experiente
-            cuidando dos detalhes para que sua única preocupação seja viver cada
-            momento.
+            Enquanto você aproveita a viagem, existe alguém experiente cuidando
+            dos detalhes para que sua única preocupação seja viver cada momento.
           </p>
-        </div>
+          <p className="historia-assinatura-texto">
+            Te espero na próxima expedição, Chico Castilho.
+          </p>
+        </ScrollReveal>
       </div>
 
       {open && (

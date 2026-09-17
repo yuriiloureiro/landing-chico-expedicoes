@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ScrollReveal from "./ScrollReveal";
 import "./FAQ.css";
 
 const perguntasGerais = [
@@ -40,25 +41,34 @@ export default function FAQ({
 
   return (
     <section className="faq">
-      <div className="container">
-        <div className="section-header">
+      <div className="container faq-grid">
+        <ScrollReveal as="div" className="faq-header">
           <p className="eyebrow">{eyebrow}</p>
           <h2 className="section-title">{titulo}</h2>
-        </div>
+        </ScrollReveal>
 
         <div className="faq-list">
           {itens.map((item, i) => {
             const isOpen = openIndex === i;
             return (
-              <div className={`faq-item ${isOpen ? "faq-item--open" : ""}`} key={item.pergunta}>
-                <button className="faq-question" onClick={() => toggle(i)} aria-expanded={isOpen}>
+              <ScrollReveal
+                as="div"
+                key={item.pergunta}
+                delay={i * 0.06}
+                className={`faq-item ${isOpen ? "faq-item--open" : ""}`}
+              >
+                <button
+                  className="faq-question"
+                  onClick={() => toggle(i)}
+                  aria-expanded={isOpen}
+                >
                   {item.pergunta}
                   <span className="faq-icon" aria-hidden="true" />
                 </button>
                 <div className="faq-answer">
                   <p>{item.resposta}</p>
                 </div>
-              </div>
+              </ScrollReveal>
             );
           })}
         </div>

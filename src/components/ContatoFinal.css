@@ -1,0 +1,73 @@
+.contato-final {
+  background: linear-gradient(135deg, var(--bg) 0%, #eef1e9 100%);
+  padding: 110px 0;
+}
+
+.contato-final-inner {
+  max-width: 640px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.contato-final-header .section-title {
+  font-size: clamp(28px, 3.4vw, 42px);
+  color: var(--dark-deeper);
+  margin: 14px 0 16px;
+}
+
+.contato-final-sub {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.contato-final-card {
+  background: var(--white);
+  border-radius: 20px;
+  box-shadow: 0 30px 60px rgba(16, 47, 68, 0.14);
+  padding: 40px;
+  text-align: left;
+  margin-top: 40px;
+}
+
+.contato-final-card .form {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.contato-final-card .form-btn {
+  display: block;
+  width: 100%;
+  background: transparent;
+  border: 1.5px solid var(--dark-deeper);
+  color: var(--dark-deeper);
+  border-radius: 4px;
+  padding: 16px 24px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  transition: all 0.25s ease;
+  cursor: pointer;
+  margin-top: 6px;
+}
+
+.contato-final-card .form-btn:hover:not(:disabled) {
+  background: var(--dark-deeper);
+  color: var(--white);
+}
+
+.contato-final-card .form-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .contato-final {
+    padding: 80px 0;
+  }
+  .contato-final-card {
+    padding: 24px;
+  }
+}

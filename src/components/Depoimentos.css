@@ -53,14 +53,15 @@
 }
 
 .depoimento-card {
+  position: relative;
   flex: 0 0 auto;
   width: 340px;
   background: var(--bg);
   border-radius: 18px;
-  padding: 30px;
+  padding: 34px 30px 30px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 18px;
   box-shadow: 0 12px 30px rgba(19, 57, 48, 0.06);
 }
 
@@ -127,4 +128,9 @@
       transparent 100%
     );
   }
+}
+
+.depoimento-aspas {
+  color: var(--gold-soft);
+  opacity: 0.5;
 }

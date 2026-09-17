@@ -3,12 +3,8 @@ import "./Formulario.css";
 
 const KEY = import.meta.env.VITE_WEB3FORMS_KEY;
 
-// Um formulário só, dois modos:
-//   tipo="contato"  → expedição aberta ou esgotada
-//   tipo="espera"   → lista de espera (expedição em breve)
-export default function Formulario({ expedicao, tipo = "contato" }) {
+export default function FormularioContato() {
   const [estado, setEstado] = useState("idle"); // idle | enviando | ok | erro
-  const espera = tipo === "espera";
 
   async function enviar(e) {
     e.preventDefault();
@@ -27,10 +23,9 @@ export default function Formulario({ expedicao, tipo = "contato" }) {
         },
         body: JSON.stringify({
           access_key: KEY,
-          subject: `${espera ? "Lista de espera" : "Contato"}: ${expedicao.nome} ${expedicao.ano}`,
+          subject: "Contato geral: site Tô Por Aí no Mundo",
           from_name: "Site Tô Por Aí no Mundo",
-          expedicao: `${expedicao.nome} ${expedicao.ano}`,
-          tipo: espera ? "lista de espera" : "contato",
+          tipo: "contato geral",
           ...dados,
         }),
       });
@@ -44,12 +39,8 @@ export default function Formulario({ expedicao, tipo = "contato" }) {
   if (estado === "ok") {
     return (
       <div className="form-ok" role="status">
-        <strong>{espera ? "Você está na lista." : "Mensagem enviada."}</strong>
-        <p>
-          {espera
-            ? "Assim que a expedição abrir, o Chico avisa você primeiro."
-            : "O Chico vai te chamar pra marcar uma conversa rápida."}
-        </p>
+        <strong>Mensagem enviada.</strong>
+        <p>O Chico vai te chamar pra marcar uma conversa rápida.</p>
       </div>
     );
   }
@@ -101,11 +92,7 @@ export default function Formulario({ expedicao, tipo = "contato" }) {
         className="btn-primary form-btn"
         disabled={estado === "enviando"}
       >
-        {estado === "enviando"
-          ? "Enviando…"
-          : espera
-            ? "Entrar na lista de espera"
-            : "Quero que o Chico me chame"}
+        {estado === "enviando" ? "Enviando…" : "Quero saber mais"}
       </button>
 
       {estado === "erro" && (

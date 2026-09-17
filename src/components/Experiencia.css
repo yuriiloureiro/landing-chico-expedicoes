@@ -23,15 +23,28 @@
 .experiencia-card {
   background: var(--bg);
   padding: 40px 32px;
+  transition: background 0.3s ease;
 }
 
-.experiencia-marker {
-  display: block;
-  width: 34px;
-  height: 4px;
-  border-radius: 4px;
-  background: var(--coral);
-  margin-bottom: 22px;
+.experiencia-card:hover {
+  background: var(--white);
+}
+
+.experiencia-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(198, 99, 55, 0.1);
+  color: var(--coral);
+  margin-bottom: 20px;
+  transition: transform 0.3s ease;
+}
+
+.experiencia-card:hover .experiencia-icone {
+  transform: translateY(-3px);
 }
 
 .experiencia-card h3 {
@@ -50,5 +63,14 @@
 @media (max-width: 860px) {
   .experiencia-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .experiencia {
+    padding: 80px 0;
+  }
+  .experiencia-card {
+    padding: 32px 24px;
   }
 }
