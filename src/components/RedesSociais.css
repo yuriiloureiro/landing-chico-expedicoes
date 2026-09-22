@@ -23,8 +23,8 @@
 
 .redes-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 22px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
 }
 
 .redes-card {
@@ -79,7 +79,13 @@
   line-height: 1.55;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
+  .redes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
   .redes-grid {
     grid-template-columns: 1fr;
   }

@@ -126,10 +126,12 @@
 
 .expedicao-ano {
   font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 12px;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 1;
   color: var(--coral);
-  margin-bottom: 6px;
+  margin-bottom: 8px;
+  display: block;
 }
 
 .expedicao-info h3 {

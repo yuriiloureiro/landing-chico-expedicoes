@@ -23,6 +23,16 @@ const canais = [
     ),
   },
   {
+    nome: "TikTok",
+    descricao: "Vídeos rápidos das expedições e bastidores de viagem.",
+    href: "https://www.tiktok.com/@toporainomundo",
+    icone: (
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+        <path d="M16.6 5.8a4.3 4.3 0 0 1-3-1.3V15a5.2 5.2 0 1 1-4.5-5.2v2.5a2.7 2.7 0 1 0 1.9 2.6V2h2.6a4.3 4.3 0 0 0 3 3.9v-.1z" />
+      </svg>
+    ),
+  },
+  {
     nome: "WhatsApp",
     descricao: "Fale direto com o Chico — atendimento humano.",
     href: linkWhatsApp(
@@ -48,7 +58,7 @@ const canais = [
 
 export default function RedesSociais() {
   return (
-    <section className="redes">
+    <section className="redes" id="contato">
       <div className="container">
         <ScrollReveal as="div" className="section-header">
           <p className="eyebrow">Vem com a gente</p>
@@ -64,7 +74,7 @@ export default function RedesSociais() {
             <ScrollReveal
               as="a"
               key={c.nome}
-              delay={i * 0.1}
+              delay={i * 0.08}
               className="redes-card"
               href={c.href}
               target="_blank"

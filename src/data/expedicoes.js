@@ -248,6 +248,21 @@ export const expedicoes = [
   },
 
   {
+    slug: "filipinas-2027",
+    nome: "Filipinas",
+    nomeCurto: "Filipinas",
+    ano: 2027,
+    destino: "Filipinas",
+    periodo: "28 de fevereiro a 13 de março de 2027",
+    status: "em-breve",
+    imagemCard: filipinasFoto,
+    imagemHero: filipinasFoto,
+    imagemHeroPosicao: "center 55%",
+    resumo: "Entre na lista de espera e seja o primeiro a saber quando abrir.",
+    video: videoFilipinas,
+  },
+
+  {
     slug: "trekking-lencois-maranhenses-2027",
     nome: "Trekking Lençóis Maranhenses",
     nomeCurto: "Lençóis Maranhenses",
@@ -380,19 +395,6 @@ export const expedicoes = [
       "Oi Chico! Quero garantir minha vaga no Festival das Lanternas 2027 e começar a me planejar.",
   },
 
-  {
-    slug: "filipinas-2027",
-    nome: "Filipinas",
-    nomeCurto: "Filipinas",
-    ano: 2027,
-    destino: "Filipinas",
-    status: "em-breve",
-    imagemCard: filipinasFoto,
-    imagemHero: filipinasFoto,
-    imagemHeroPosicao: "center 55%",
-    resumo: "Entre na lista de espera e seja o primeiro a saber quando abrir.",
-    video: videoFilipinas,
-  },
   {
     slug: "egito-2027",
     nome: "Egito",

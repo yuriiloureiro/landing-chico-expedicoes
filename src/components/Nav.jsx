@@ -7,7 +7,6 @@ const links = [
   { href: "#expedicoes", label: "Expedições" },
   { href: "#sobre", label: "O Chico" },
   { href: "#experiencia", label: "A experiência" },
-  { href: "#contato", label: "Contato" },
 ];
 
 export default function Nav() {
