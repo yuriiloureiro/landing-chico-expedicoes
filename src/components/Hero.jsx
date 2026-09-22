@@ -26,37 +26,26 @@ export default function Hero() {
       />
       <div className="hero-overlay" />
       <div className="container hero-content">
-        <motion.p
-          className="hero-eyebrow"
+        <motion.span
+          className="hero-badge"
           initial="hidden"
           animate="visible"
           custom={0}
           variants={fadeUp}
         >
-          Planejamento exclusivo
-        </motion.p>
+          Você por aí no Mundo Viagens
+        </motion.span>
 
         <motion.h1
           className="section-title hero-title"
           initial="hidden"
           animate="visible"
-          custom={0.1}
+          custom={0.15}
           variants={fadeUp}
         >
-          Solte o que te prende. O mundo está esperando.
+          Solte o que te prende.
+          <br />O mundo está esperando.
         </motion.h1>
-
-        <motion.p
-          className="hero-sub"
-          initial="hidden"
-          animate="visible"
-          custom={0.2}
-          variants={fadeUp}
-        >
-          Expedições em grupo pela Tailândia, Lençóis Maranhenses e outros
-          destinos, guiadas de perto pelo Chico, que já criou mais de 50
-          roteiros e conhece cada lugar como poucos brasileiros conhecem.
-        </motion.p>
 
         <motion.div
           className="hero-actions"
