@@ -5,9 +5,15 @@
 // status: "ultimas-vagas" | "aberta" | "em-breve" | "esgotada"
 // video: vídeo de paisagem do destino, importado de src/assets/videos/expedicoes/.
 //        Sem ele, a página usa VIDEO_PADRAO.
-// videoFormato: "vertical" (Reels/Shorts) ou "horizontal"
 // porqueExpedicao: { semGuia: [...], comChico: [...] } — comparação "por conta
 //   própria vs com o Chico". Opcional — sem ele a seção não aparece na página.
+// duracaoDetalhe / rota / hospedagemResumo: dados extras exibidos no card
+//   unificado da seção "Incluso" (ficha + destaque de dias). Opcionais.
+// roteiro: [{ dia, data, titulo, texto }] — dia a dia da expedição. Opcional;
+//   sem ele a seção "Roteiro" não aparece nem o link dela no menu.
+// decisao: { titulo, tituloDestaque, tag, resumo, destaques[], precoMin,
+//   precoMax } — seção final de investimento. Opcional; sem ele a seção
+//   "Decisão" não aparece nem o link dela no menu.
 
 import lanternas2026Hero from "../assets/images/banner.webp";
 import lanternasCard from "../assets/images/expedicoes/lanternas-card.webp";
@@ -29,7 +35,6 @@ export const WHATSAPP = "5513982026838";
 // Vídeo usado como reserva em qualquer expedição futura que ainda não tenha
 // seu próprio vídeo de paisagem cadastrado no campo `video` abaixo.
 export const VIDEO_PADRAO = videoLanternas;
-export const VIDEO_PADRAO_FORMATO = "horizontal";
 
 export function linkWhatsApp(mensagem) {
   return `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(mensagem)}`;
@@ -50,7 +55,7 @@ const QUARTOS = {
 const DEPOIS_DA_MENSAGEM = {
   pergunta: "Como funciona depois que eu mando mensagem?",
   resposta:
-    "O Chico marca uma conversa rápida por chamada com você, tira todas as dúvidas, explica os detalhes da expedição e, se fizer sentido pros dois lados, já encaminha os próximos passos da reserva.",
+    "O Chico marca uma conversa rápida de uns 15 minutos por chamada com você, tira todas as dúvidas, explica os detalhes da expedição e, se fizer sentido pros dois lados, já encaminha os próximos passos da reserva.",
 };
 
 const PORQUE_LANTERNAS = {
@@ -118,7 +123,6 @@ export const expedicoes = [
       "As vagas desta edição já esgotaram. Fale com o Chico pra entrar na lista de espera ou saber sobre a próxima.",
     ],
     video: videoLanternas,
-    videoFormato: "horizontal",
     porqueExpedicao: PORQUE_LANTERNAS,
     incluso: [
       {
@@ -154,10 +158,110 @@ export const expedicoes = [
       "Outras despesas não mencionadas",
     ],
     obrigatorios: [
-      "Passaporte válido e com espaço para carimbos",
+      "Passaporte válido com 6 meses de validade a partir da viagem e com espaço para carimbos",
       "Certificado internacional de vacina da febre amarela",
       "Formulário TDAC preenchido até 72h antes da chegada",
       "Seguro viagem",
+    ],
+    roteiro: [
+      {
+        dia: "01",
+        data: "31/01",
+        titulo: "Chegada Tailândia",
+        texto:
+          "Transfer para hospedagem e, à noite, a energia vibrante da Khaosan Road espera por você!",
+      },
+      {
+        dia: "02",
+        data: "01/02",
+        titulo: "História e Templos",
+        texto:
+          "Passeio para Ayutthaya e visita aos templos sagrados Wat Pho, Wat Arun e Grand Palace que revelam a alma cultural da Tailândia, terminando com um passeio de Tuk Tuk até a vibrante Chinatown de Bangkok!",
+      },
+      {
+        dia: "03",
+        data: "02/02",
+        titulo: "Mercados e Cultura",
+        texto:
+          'Passeio para os famosos mercados do trem e flutuante e à noite viva a energia da Soi Cowboy, cenário do filme "Se Beber, Não Case!"',
+      },
+      {
+        dia: "04",
+        data: "03/02",
+        titulo: "Viagem para o Norte",
+        texto:
+          "Voo para Chiang Mai, visita ao icônico Templo Doi Suthep e experiência com a autêntica culinária do norte da Tailândia!",
+      },
+      {
+        dia: "05",
+        data: "04/02",
+        titulo: "Cultura",
+        texto:
+          "Visita aos templos de Chiang Rai (White, Blue e Red Temple), Tribo das Mulheres Girafa, e à noite viva a experiência única do Night Bazar!",
+      },
+      {
+        dia: "06",
+        data: "05/02",
+        titulo: "Natureza",
+        texto:
+          "Uma manhã em um Santuário dos Elefantes, com alimentação e banho com os elefantes (sem montaria).",
+      },
+      {
+        dia: "07",
+        data: "06/02",
+        titulo: "Rumo às ilhas",
+        texto:
+          "Voo para Krabi e barco até Koh Phi Phi, apresentação da ilha mais divertida da Tailândia, baldinho de bebida e noite livre!",
+      },
+      {
+        dia: "08",
+        data: "07/02",
+        titulo: "Diversão na ilha",
+        texto:
+          "Manhã livre para relaxar e, à tarde, embarque no Barco Pirata, o passeio mais divertido de Phi Phi!",
+      },
+      {
+        dia: "09",
+        data: "08/02",
+        titulo: "Long Tail",
+        texto:
+          "Manhã livre para relaxar na praia, tarde de passeio de Long Tail e noite livre para aproveitar tudo o que a ilha oferece!",
+      },
+      {
+        dia: "10",
+        data: "09/02",
+        titulo: "Koh Phi Phi é sua",
+        texto:
+          "Dia livre para explorar a ilha, view point (opcional) e, à noite, a famosa luta de Muay Thai!",
+      },
+      {
+        dia: "11",
+        data: "10/02",
+        titulo: "Praia de Ao Nang",
+        texto:
+          "Barco para Krabi, relaxe com uma massagem na Praia de Ao Nang, aprecie o pôr do sol e aproveite a noite explorando as famosas lojinhas locais.",
+      },
+      {
+        dia: "12",
+        data: "11/02",
+        titulo: "Praia e Natureza",
+        texto:
+          "Dia incrível em Railey Beach e, à noite, tempo livre para explorar a vibe única de Ao Nang!",
+      },
+      {
+        dia: "13",
+        data: "12/02",
+        titulo: "Retorno a Bangkok",
+        texto:
+          "Voo para Bangkok, tarde livre para compras no MBK Center e Central World!",
+      },
+      {
+        dia: "14",
+        data: "13/02",
+        titulo: "Retorno Brasil",
+        texto:
+          "Retorno ao Brasil, mas com a certeza de que as memórias dessa viagem ficarão para sempre!",
+      },
     ],
     faq: [PASSAGEM_AEREA, QUARTOS, DEPOIS_DA_MENSAGEM],
     mensagemWhatsApp:
@@ -172,6 +276,10 @@ export const expedicoes = [
     destino: "Tailândia",
     periodo: "31 de janeiro a 13 de fevereiro de 2027",
     duracao: "14 dias",
+    duracaoDetalhe:
+      "13 noites divididas em Bangkok, Chiang Mai, Koh Phi Phi e Krabi.",
+    rota: "Bangkok · Chiang Mai · Koh Phi Phi · Krabi",
+    hospedagemResumo: "Hospedagem 3★ e 4★ selecionada",
     status: "aberta",
     imagemCard: carnavalCard,
     imagemHero: carnavalCard,
@@ -179,11 +287,12 @@ export const expedicoes = [
     resumo:
       "E se o Carnaval de 2027 fosse na Tailândia? Dias de aventura, praias paradisíacas e experiências que você nunca vai esquecer.",
     descricao: [
-      "Enquanto o Brasil está em folia, você vai estar entre templos, mercados flutuantes, santuário de elefantes e as águas mais azuis do sul da Tailândia.",
-      "Tudo com o Chico ao seu lado: ele resolve a logística, abre portas e cuida dos detalhes pra que sua única preocupação seja viver cada momento.",
+      "Enquanto o Brasil celebra o Carnaval nas ruas, você vai viver uma experiência do outro lado do mundo.",
+      "Templos milenares, mercados flutuantes, encontros com elefantes e as águas cristalinas do sul da Tailândia.",
+      "Tudo isso ao lado do Chico, que cuida da logística, dos detalhes e está com você em cada etapa da viagem.",
+      "Você só precisa chegar, se entregar à experiência e viver a Tailândia de um jeito que nunca imaginou.",
     ],
     video: videoCarnaval,
-    videoFormato: "vertical",
     porqueExpedicao: PORQUE_CARNAVAL,
     incluso: [
       {
@@ -223,16 +332,36 @@ export const expedicoes = [
       "Outras despesas não mencionadas",
     ],
     obrigatorios: [
-      "Passaporte válido e com espaço para carimbos",
+      "Passaporte válido com 6 meses de validade a partir da viagem e com espaço para carimbos",
       "Certificado internacional de vacina da febre amarela",
       "Formulário TDAC preenchido até 72h antes da chegada",
       "Seguro viagem",
     ],
+    decisao: {
+      titulo: "Pronto(a) para viver",
+      tituloDestaque: "o Carnaval mais diferentão da sua vida?",
+      tag: "Experiência completa",
+      resumo:
+        "O Carnaval mais diferentão que você vai viver na Tailândia, passando por Bangkok, Chiang Mai, Koh Phi Phi e Krabi, com os principais templos, santuário de elefantes, passeios de barco pelas ilhas e acompanhamento 100% durante toda a viagem.",
+      destaques: [
+        "14 dias de expedição",
+        "Hotéis 3★ e 4★ com café da manhã",
+        "Templos em Chiang Rai (Templo Branco, Azul e Red Temple)",
+        "Passeios de barco em Koh Phi Phi (barco pirata e Long Tail)",
+        "3 voos domésticos",
+        "Translados, transfers e barcos",
+        "Ayutthaya, Grand Palace, Wat Pho, Wat Arun",
+        "Santuário de elefantes",
+        "Acompanhamento do Chico",
+      ],
+      precoMin: "R$ 16.000",
+      precoMax: "R$ 18.000",
+    },
     faq: [
       {
         pergunta: "Como faço com dinheiro?",
         resposta:
-          "Leve um pouco em espécie (cerca de 500 dólares ou euros), mas os cartões de conta global vão te ajudar muito: Wise, Inter Global, Revolut, Nomad, entre outros.",
+          "Leve um pouco em espécie (cerca de 500 dólares ou euros), mas os cartões de conta global vão te ajudar muito: Wise, Revolut, Nomad, entre outros.",
       },
       PASSAGEM_AEREA,
       QUARTOS,
@@ -281,7 +410,6 @@ export const expedicoes = [
       "É uma experiência física, mas acessível: com um pouco de preparo, dá pra viver. O maior percurso é o do terceiro dia, com 17 km.",
     ],
     video: videoLencois,
-    videoFormato: "vertical",
     porqueExpedicao: PORQUE_LENCOIS,
     incluso: [
       {
@@ -388,7 +516,6 @@ export const expedicoes = [
       "Chame o Chico pra reservar sua vaga e receber os detalhes assim que as datas fecharem.",
     ],
     video: videoLanternas,
-    videoFormato: "vertical",
     porqueExpedicao: PORQUE_LANTERNAS,
     faq: [PASSAGEM_AEREA, QUARTOS, DEPOIS_DA_MENSAGEM],
     mensagemWhatsApp:

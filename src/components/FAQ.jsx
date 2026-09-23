@@ -35,16 +35,19 @@ export default function FAQ({
   itens = perguntasGerais,
   eyebrow = "Dúvidas frequentes",
   titulo = "Tudo o que você precisa saber antes de chamar o Chico",
+  subtitulo,
+  id,
 }) {
   const [openIndex, setOpenIndex] = useState(0);
   const toggle = (i) => setOpenIndex((current) => (current === i ? -1 : i));
 
   return (
-    <section className="faq">
+    <section className="faq" id={id}>
       <div className="container faq-grid">
         <ScrollReveal as="div" className="faq-header">
           <p className="eyebrow">{eyebrow}</p>
           <h2 className="section-title">{titulo}</h2>
+          {subtitulo && <p className="faq-subtitulo">{subtitulo}</p>}
         </ScrollReveal>
 
         <div className="faq-list">

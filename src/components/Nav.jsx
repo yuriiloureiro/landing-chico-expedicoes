@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import logo from "../assets/images/logo-horizontal.png";
+import { expedicoes } from "../data/expedicoes";
 import "./Nav.css";
 
-const links = [
+const linksHome = [
   { href: "#expedicoes", label: "Expedições" },
   { href: "#sobre", label: "O Chico" },
   { href: "#experiencia", label: "A experiência" },
@@ -15,8 +16,33 @@ export default function Nav() {
   const naHome = pathname === "/";
   const handleClick = () => setOpen(false);
 
+  const matchExpedicao = pathname.match(/^\/expedicoes\/(.+)$/);
+  const expedicaoAtual = matchExpedicao
+    ? expedicoes.find((e) => e.slug === matchExpedicao[1])
+    : null;
+
+  const linksExpedicao = expedicaoAtual
+    ? [
+        expedicaoAtual.incluso && { href: "#incluso", label: "Incluso" },
+        expedicaoAtual.roteiro && { href: "#roteiro", label: "Roteiro" },
+        expedicaoAtual.precoFaixa && { href: "#decisao", label: "Decisão" },
+        expedicaoAtual.porqueExpedicao && {
+          href: "#porque",
+          label: "Por quê?",
+        },
+        expedicaoAtual.faq && {
+          href: "#chico-responde",
+          label: "O Chico responde",
+        },
+        { href: "#depoimentos", label: "Depoimentos" },
+      ].filter(Boolean)
+    : null;
+
+  const links = linksExpedicao || linksHome;
+  const ancoraNaMesmaPagina = naHome || Boolean(expedicaoAtual);
+
   function renderLink(l, onClick) {
-    if (naHome) {
+    if (ancoraNaMesmaPagina) {
       return (
         <a key={l.href} href={l.href} onClick={onClick}>
           {l.label}

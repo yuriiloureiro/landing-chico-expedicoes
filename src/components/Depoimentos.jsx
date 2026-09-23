@@ -61,11 +61,11 @@ function Card({ item }) {
   );
 }
 
-export default function Depoimentos() {
+export default function Depoimentos({ id }) {
   const loop = [...depoimentos, ...depoimentos];
 
   return (
-    <section className="depoimentos">
+    <section className="depoimentos" id={id}>
       <ScrollReveal as="div" className="section-header">
         <p className="eyebrow">Quem já viveu</p>
         <h2 className="section-title">Não é só o que eu digo</h2>
