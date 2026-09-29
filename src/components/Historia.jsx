@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import capaVideo from "../assets/images/capa-video.webp";
+import capaVideo from "../assets/images/chico-coconut-boat.webp";
 import ScrollReveal from "./ScrollReveal";
 import "./Historia.css";
 
