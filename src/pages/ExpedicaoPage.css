@@ -60,12 +60,21 @@
   box-sizing: border-box;
 }
 .pagina-hero-eyebrow {
-  color: var(--gold-soft);
-  font-size: 0.75rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  font-weight: 600;
+  display: inline-block;
+  max-width: 100%;
+  padding: 10px 18px;
   margin-bottom: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 12px;
+  background: rgba(16, 47, 68, 0.8);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: clamp(14px, 1.2vw, 16px);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  text-wrap: balance;
 }
 .pagina-hero-titulo {
   font-family: var(--font-display);
@@ -986,4 +995,40 @@
 .pagina-hero-voltar:hover {
   background: rgba(255, 255, 255, 0.18);
   border-color: var(--white);
+}
+.pagina-hero {
+  height: auto;
+  min-height: max(560px, 100svh);
+  flex-direction: column;
+  padding: 140px 0 90px;
+}
+
+.pagina-hero-navegacao {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  margin-bottom: 36px;
+}
+
+.pagina-hero-voltar {
+  margin-bottom: 0;
+}
+
+.pagina-hero-content {
+  margin-block: auto;
+}
+
+@media (max-width: 640px) {
+  .pagina-hero {
+    padding: 120px 0 80px;
+  }
+
+  .pagina-hero-navegacao {
+    margin-bottom: 28px;
+  }
+
+  .pagina-hero-voltar {
+    padding: 10px 14px;
+    font-size: 12px;
+  }
 }

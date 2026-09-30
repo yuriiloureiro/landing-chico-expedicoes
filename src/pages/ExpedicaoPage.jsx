@@ -396,11 +396,14 @@ export default function ExpedicaoPage() {
 
         {esgotada && <span className="pagina-carimbo">Esgotado</span>}
 
-        <div className="container pagina-hero-content">
+        <div className="container pagina-hero-navegacao">
           <Link to="/#expedicoes" className="pagina-hero-voltar">
             <span aria-hidden="true">←</span>
             Ver todas as expedições
           </Link>
+        </div>
+
+        <div className="container pagina-hero-content">
           {(expedicao.periodo || expedicao.periodoNota) && (
             <motion.p
               className="pagina-hero-eyebrow"
