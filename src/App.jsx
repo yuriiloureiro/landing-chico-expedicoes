@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useLayoutEffect } from "react";
 import "./styles/global.css";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Nav from "./components/Nav";
@@ -17,6 +17,17 @@ import RedesSociais from "./components/RedesSociais";
 import Footer from "./components/Footer";
 import ExpedicaoPage from "./pages/ExpedicaoPage";
 import NotFound from "./pages/NotFound";
+
+function ScrollAoNavegar() {
+  const { pathname, hash } = useLocation();
+
+  useLayoutEffect(() => {
+    if (hash) return;
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname, hash]);
+
+  return null;
+}
 
 function Home() {
   const { hash } = useLocation();
@@ -52,6 +63,7 @@ function Home() {
 export default function App() {
   return (
     <BrowserRouter>
+      <ScrollAoNavegar />
       <div className="App">
         <Nav />
         <Routes>

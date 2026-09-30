@@ -1,6 +1,6 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
-import { expedicoes, STATUS_LABEL, VIDEO_PADRAO } from "../data/expedicoes";
+import { expedicoes, VIDEO_PADRAO } from "../data/expedicoes";
 import Formulario from "../components/Formulario";
 import FAQ from "../components/FAQ";
 import ScrollReveal from "../components/ScrollReveal";
@@ -395,6 +395,13 @@ export default function ExpedicaoPage() {
         <div className="pagina-hero-overlay" />
 
         {esgotada && <span className="pagina-carimbo">Esgotado</span>}
+
+        <div className="container pagina-hero-navegacao">
+          <Link to="/#expedicoes" className="pagina-hero-voltar">
+            <span aria-hidden="true">←</span>
+            Ver todas as expedições
+          </Link>
+        </div>
 
         <div className="container pagina-hero-content">
           {(expedicao.periodo || expedicao.periodoNota) && (

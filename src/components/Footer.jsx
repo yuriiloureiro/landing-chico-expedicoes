@@ -1,4 +1,4 @@
-import logo from "../assets/images/logo-horizontal.png";
+import logo from "../assets/images/logo-sem-fundo.png";
 import cadastur from "../assets/images/cadastur.png";
 import { linkWhatsApp } from "../data/expedicoes";
 import "./Footer.css";
@@ -8,12 +8,7 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-grid">
         <div className="footer-col footer-col--brand">
-          <img
-            src={logo}
-            alt="Você Por Aí no Mundo"
-            className="footer-logo"
-            height="40"
-          />
+          <img src={logo} alt="Você Por Aí no Mundo" className="footer-logo" />
           <p className="footer-tagline">
             Expedições em grupo pelo mundo. O Chico cuida de tudo, você só
             embarca.

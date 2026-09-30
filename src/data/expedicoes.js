@@ -399,15 +399,21 @@ export const expedicoes = [
     destino: "Brasil",
     periodo: "14 a 21 de junho de 2027",
     duracao: "8 dias",
+    duracaoDetalhe:
+      "7 noites: 4 em hospedagens com quartos duplos ou triplos e 3 em redários nos pontos de apoio do trekking.",
+    rota: "São Luís · Barreirinhas · Atins · Santo Amaro",
+    hospedagemResumo: "Quartos duplos ou triplos e redários no trekking",
     status: "aberta",
     imagemCard: lencoisCard,
     imagemHero: lencoisCard,
     imagemHeroPosicao: "center 60%",
     resumo:
-      "Já se imaginou explorando os Lençóis Maranhenses na sua essência? Dias caminhando entre dunas e lagoas, dormindo em redários nos vilarejos.",
+      "Oito dias de viagem, quatro de trekking. Caminhe entre dunas e lagoas e viva os Lençóis Maranhenses na sua essência.",
     descricao: [
-      "Quatro dias de trekking pelo coração dos Lençóis, com guia local especializado, paradas para banho nas lagoas e noites em pontos de apoio nos vilarejos. Antes e depois, São Luís, Barreirinhas, Atins e Santo Amaro.",
-      "É uma experiência física, mas acessível: com um pouco de preparo, dá pra viver. O maior percurso é o do terceiro dia, com 17 km.",
+      "Já se imaginou explorando os Lençóis Maranhenses a pé, com tempo para mergulhar nas lagoas e descobrir novos cenários a cada trecho do caminho?",
+      "De 14 a 21 de junho de 2027, a expedição reúne São Luís, Barreirinhas, Atins e Santo Amaro, com passeio pelo Rio Preguiças e quatro dias de trekking acompanhados por guia local especializado.",
+      "Durante a caminhada, as noites são em redários nos pontos de apoio dos vilarejos, com café da manhã, almoço e jantar inclusos. Nas demais etapas, as hospedagens são em quartos duplos ou triplos, com café da manhã.",
+      "Os percursos são longos, com diversas paradas para banho nas lagoas. É uma experiência que exige preparo físico: o terceiro dia do trekking tem o maior percurso, com 17 km.",
     ],
     video: videoLencois,
     porqueExpedicao: PORQUE_LENCOIS,
@@ -415,41 +421,80 @@ export const expedicoes = [
       {
         titulo: "Transfers e traslados",
         itens: [
-          "Todos os deslocamentos entre as etapas, incluindo o barco até Atins",
+          "Transfer de São Luís para Barreirinhas",
+          "Barco de Barreirinhas para Atins",
+          "Transfer de Santo Amaro para São Luís",
         ],
       },
       {
         titulo: "Hospedagens",
         itens: [
-          "4 diárias em pousadas com café da manhã (quartos duplos ou triplos)",
-          "3 diárias no trekking em pontos de apoio com redário, com café, almoço e janta (bebidas à parte)",
+          "1 diária em São Luís com café da manhã",
+          "1 diária em Barreirinhas com café da manhã",
+          "1 diária em Atins com café da manhã",
+          "1 diária em Santo Amaro com café da manhã",
+          "Quartos duplos ou triplos nessas quatro etapas",
+        ],
+      },
+      {
+        titulo: "Hospedagens no trekking",
+        itens: [
+          "3 diárias em pontos de apoio nos vilarejos, em galpões com redário",
+          "Café da manhã, almoço e jantar inclusos nessas diárias",
+          "Bebidas à parte",
         ],
       },
       {
         titulo: "Passeios",
         itens: [
           "City tour em São Luís",
-          "Passeio de barco pelo Rio Preguiças até Atins",
-          "4 dias de trekking acompanhado de guia local especializado",
+          "Passeio de barco pelo Rio Preguiças até Atins, explorando Vassouras, Mandacaru e Caburé",
+          "4 dias de trekking com guia local especializado",
         ],
       },
     ],
     naoIncluso: [
       "Passagem aérea (com suporte do Chico na compra)",
       "Hospedagens antes e depois da expedição",
-      "Refeições e bebidas não mencionadas",
+      "Refeições e bebidas não mencionadas no roteiro",
       "Outras despesas não mencionadas",
     ],
+    decisao: {
+      titulo: "Pronto(a) para explorar",
+      tituloDestaque: "os Lençóis Maranhenses na sua essência?",
+      tag: "Trekking entre dunas e lagoas",
+      resumo:
+        "Uma expedição de 8 dias por São Luís, Barreirinhas, Atins e Santo Amaro, com passeio pelo Rio Preguiças, 4 dias de trekking e noites em redários nos vilarejos.",
+      destaques: [
+        "8 dias de expedição, de 14 a 21 de junho de 2027",
+        "4 dias de trekking com guia local especializado",
+        "4 diárias em quartos duplos ou triplos com café da manhã",
+        "3 diárias em redários nos pontos de apoio",
+        "Café da manhã, almoço e jantar nas diárias do trekking (bebidas à parte)",
+        "City tour em São Luís",
+        "Passeio pelo Rio Preguiças, com Vassouras, Mandacaru e Caburé",
+        "Transfers São Luís–Barreirinhas e Santo Amaro–São Luís",
+        "Barco de Barreirinhas para Atins",
+      ],
+      precoMin: "R$ 5.000",
+      precoMax: "R$ 6.500",
+    },
     dicas: [
       {
         titulo: "Itens pessoais",
         itens: [
-          "Mochila de 35 litros",
-          "Toalha e roupas leves de secagem rápida",
-          "Trajes de banho e canga",
-          "Óculos de sol e repelente",
-          "Kit de primeiros socorros simples",
-          "Garrafa de água, snacks, lanterna e carregador portátil",
+          "Mochila de 35 litros para os itens essenciais",
+          "Toalha de secagem rápida",
+          "Trajes de banho",
+          "Roupas leves de secagem rápida",
+          "Óculos de sol",
+          "Kit de primeiros socorros para cuidados simples",
+          "Garrafa de água",
+          "Lanterna (pode ser a do celular)",
+          "Carregador portátil",
+          "Canga",
+          "Repelente",
+          "Snacks",
         ],
       },
       {
@@ -463,18 +508,18 @@ export const expedicoes = [
       {
         titulo: "Calçados",
         itens: [
-          "Calçados para trilha e meias",
+          "Calçados para trilhas e meias",
           "Sapatilha aquática",
-          "Chinelo pro final do dia",
-          "Obs.: a maioria caminha descalça, a areia nas dunas é fria",
+          "Chinelo para usar ao final das caminhadas",
+          "Os calçados são opcionais: segundo o Chico, a maioria caminha descalça nas dunas",
         ],
       },
       {
         titulo: "Opcionais",
         itens: [
-          "Shorts ou calça, caso prefira caminhar de roupa",
-          "Jaqueta impermeável pra chuva ou friozinho nos redários",
-          "Dinheiro pras bebidas nos pontos de apoio (normalmente aceitam PIX, mas são 2 dias sem conexão)",
+          "Shorts ou calça, caso prefira caminhar de roupa em vez de traje de banho",
+          "Jaqueta impermeável para chuva ou noites mais frescas nos redários",
+          "Dinheiro para as bebidas nos pontos de apoio: normalmente aceitam PIX, mas há cerca de 2 dias sem conexão",
         ],
       },
     ],
@@ -482,14 +527,19 @@ export const expedicoes = [
       PASSAGEM_AEREA,
       QUARTOS,
       {
+        pergunta: "Como são as hospedagens?",
+        resposta:
+          "São 7 diárias: uma em São Luís, uma em Barreirinhas, uma em Atins e uma em Santo Amaro, em quartos duplos ou triplos com café da manhã. Durante o trekking, são 3 diárias em galpões com redário nos pontos de apoio dos vilarejos, com café da manhã, almoço e jantar inclusos. As bebidas são pagas à parte.",
+      },
+      {
         pergunta: "A areia é quente?",
         resposta:
-          "Não. Como o grupo sai muito cedo, a areia está sempre fria. Só ao chegar nos pontos de apoio é que, em alguns momentos, fica mais quente.",
+          "Segundo o Chico, o grupo sai muito cedo e encontra a areia fria durante a caminhada. Ao chegar aos pontos de apoio, em alguns momentos, a areia pode estar mais quente.",
       },
       {
         pergunta: "É muito cansativo?",
         resposta:
-          "São percursos longos, mas com diversas paradas para banho nas lagoas. Com um pouco de preparo físico é possível realizar. O 3º dia é o de maior percurso, com 17 km.",
+          "São percursos longos, com diversas paradas para banho nas lagoas. É necessário preparo físico para realizar as caminhadas. O terceiro dia do trekking tem o maior percurso, com 17 km. Converse com o Chico para entender o ritmo da expedição antes de reservar.",
       },
       DEPOIS_DA_MENSAGEM,
     ],
@@ -535,6 +585,7 @@ export const expedicoes = [
     resumo: "Entre na lista de espera e seja o primeiro a saber quando abrir.",
     video: videoEgito,
   },
+
   {
     slug: "china-2027",
     nome: "China",
