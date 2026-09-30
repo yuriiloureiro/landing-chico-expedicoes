@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/images/logo-horizontal.png";
+import logo from "../assets/images/logo-sem-fundo.png";
 import { expedicoes } from "../data/expedicoes";
 import "./Nav.css";
 
