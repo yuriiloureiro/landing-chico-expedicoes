@@ -528,13 +528,20 @@ export default function ExpedicaoPage() {
               <ScrollReveal as="div" className="incluso-editorial-intro">
                 <p className="eyebrow">Tudo resolvido antes do embarque</p>
 
-                <h2>Tudo resolvido antes mesmo de você embarcar.</h2>
+                <h2>
+                  {expedicao.inclusoTitulo ||
+                    "Tudo resolvido antes mesmo de você embarcar."}
+                </h2>
 
-                <p className="incluso-editorial-descricao">
-                  Dos deslocamentos às hospedagens, os principais detalhes já
-                  estão organizados para você aproveitar cada etapa da
-                  expedição.
-                </p>
+                {(
+                  expedicao.inclusoIntroducao || [
+                    "Dos deslocamentos às hospedagens, os principais detalhes já estão organizados para você aproveitar cada etapa da expedição.",
+                  ]
+                ).map((texto) => (
+                  <p className="incluso-editorial-descricao" key={texto}>
+                    {texto}
+                  </p>
+                ))}
 
                 {temMeta && (
                   <div className="incluso-editorial-rota">
