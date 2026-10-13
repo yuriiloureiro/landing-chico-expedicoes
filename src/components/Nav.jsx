@@ -35,6 +35,10 @@ export default function Nav() {
           label: "O Chico responde",
         },
         { href: "#depoimentos", label: "Depoimentos" },
+        ["china-2027", "egito-2027"].includes(expedicaoAtual.slug) && {
+          href: "#formulario",
+          label: "Tenho interesse",
+        },
       ].filter(Boolean)
     : null;
 

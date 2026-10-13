@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { expedicoes, VIDEO_PADRAO } from "../data/expedicoes";
+import { getFormularioExpedicao } from "../data/formulariosExpedicoes";
 import RoteiroExpedicao from "../components/RoteiroExpedicao";
 import Formulario from "../components/Formulario";
 import DecisaoExpedicao from "../components/DecisaoExpedicao";
@@ -370,18 +371,22 @@ export default function ExpedicaoPage() {
 
   const temMeta = Boolean(expedicao.rota || expedicao.hospedagemResumo);
 
-  const formularioTitulo = emBreve
-    ? "Entrar na lista de espera"
-    : esgotada
-      ? "Quero saber sobre a próxima edição"
-      : "Quero garantir minha vaga";
+  const configuracaoFormulario = getFormularioExpedicao(expedicao);
 
-  const formularioSubtitulo = emBreve
-    ? "Seja o primeiro a saber quando essa expedição abrir."
-    : esgotada
-      ? "Deixe seus dados e o Chico te avisa assim que abrir uma nova turma."
-      : "Preencha seus dados e o Chico entra em contato pra alinhar os próximos\u00A0passos.";
+  const formularioTitulo = esgotada
+    ? "Quero saber sobre a próxima edição"
+    : configuracaoFormulario?.titulo ||
+      (emBreve
+        ? "Quer receber os detalhes dessa expedição?"
+        : "Vamos conversar sobre sua próxima viagem?");
 
+  const formularioSubtitulo = esgotada
+    ? "Fale com o Chico pelo WhatsApp para saber sobre a lista de espera ou uma próxima edição."
+    : emBreve
+      ? "Responda às cinco perguntas para o Chico conhecer seu perfil. Ao finalizar, envie suas respostas pelo WhatsApp e converse sobre os detalhes da expedição."
+      : configuracaoFormulario
+        ? "Responda às cinco perguntas para o Chico conhecer seu perfil e suas expectativas. Ao finalizar, envie suas respostas pelo WhatsApp para conversar sobre os próximos passos."
+        : "Fale com o Chico pelo WhatsApp para conhecer os detalhes e os próximos passos.";
   const temNaoIncluso = Boolean(expedicao.naoIncluso);
   const temObrigatorios = Boolean(expedicao.obrigatorios);
   const temColunaDupla = temNaoIncluso && temObrigatorios;

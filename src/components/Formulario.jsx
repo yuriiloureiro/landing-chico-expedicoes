@@ -1,119 +1,228 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { linkWhatsApp } from "../data/expedicoes";
+import { getFormularioExpedicao } from "../data/formulariosExpedicoes";
 import "./Formulario.css";
 
-const KEY = import.meta.env.VITE_WEB3FORMS_KEY;
+function FormularioWhatsApp({ expedicao, configuracao, espera }) {
+  const { perguntas, periodo } = configuracao;
+  const [etapa, setEtapa] = useState(0);
+  const [respostas, setRespostas] = useState({});
+  const tituloRef = useRef(null);
+  const deveFocarRef = useRef(false);
 
-// Um formulário só, dois modos:
-//   tipo="contato"  → expedição aberta ou esgotada
-//   tipo="espera"   → lista de espera (expedição em breve)
-export default function Formulario({ expedicao, tipo = "contato" }) {
-  const [estado, setEstado] = useState("idle"); // idle | enviando | ok | erro
-  const espera = tipo === "espera";
+  const pergunta = perguntas[etapa];
+  const ultimaEtapa = etapa === perguntas.length - 1;
+  const respostaAtual = respostas[pergunta.id];
+  const completo = perguntas.every((item) => respostas[item.id]);
+  const progresso = ((etapa + 1) / perguntas.length) * 100;
+  const avisoId = `form-exp-aviso-${expedicao.slug}`;
 
-  async function enviar(e) {
-    e.preventDefault();
-    if (!KEY) {
-      setEstado("erro");
-      return;
+  const textoBotao = espera
+    ? "Quero receber os detalhes"
+    : "Conversar com o Chico";
+
+  useEffect(() => {
+    if (deveFocarRef.current) {
+      tituloRef.current?.focus({ preventScroll: true });
+      deveFocarRef.current = false;
     }
-    setEstado("enviando");
-    const dados = Object.fromEntries(new FormData(e.currentTarget));
-    try {
-      const r = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        body: JSON.stringify({
-          access_key: KEY,
-          subject: `${espera ? "Lista de espera" : "Contato"}: ${expedicao.nome} ${expedicao.ano}`,
-          from_name: "Site Tô Por Aí no Mundo",
-          expedicao: `${expedicao.nome} ${expedicao.ano}`,
-          tipo: espera ? "lista de espera" : "contato",
-          ...dados,
-        }),
-      });
-      const json = await r.json();
-      setEstado(json.success ? "ok" : "erro");
-    } catch {
-      setEstado("erro");
-    }
+  }, [etapa]);
+
+  function mudarEtapa(proximaEtapa) {
+    deveFocarRef.current = true;
+    setEtapa(proximaEtapa);
   }
 
-  if (estado === "ok") {
-    return (
-      <div className="form-ok" role="status">
-        <strong>{espera ? "Você está na lista." : "Mensagem enviada."}</strong>
-        <p>
-          {espera
-            ? "Assim que a expedição abrir, o Chico avisa você primeiro."
-            : "O Chico vai te chamar pra marcar uma conversa rápida."}
-        </p>
+  function selecionarResposta(valor) {
+    setRespostas((atuais) => ({
+      ...atuais,
+      [pergunta.id]: valor,
+    }));
+  }
+
+  function continuar(event) {
+    event.preventDefault();
+
+    if (!respostaAtual || ultimaEtapa) return;
+
+    mudarEtapa(etapa + 1);
+  }
+
+  const mensagem = [
+    `Oi, Chico! Tenho interesse na expedição ${expedicao.nome} ${expedicao.ano}.`,
+    "",
+    ...(espera
+      ? [
+          "Vi que essa expedição está em breve e gostaria de receber os detalhes.",
+          "",
+        ]
+      : []),
+    `Período: ${periodo}`,
+    "",
+    "Estas são minhas respostas:",
+    "",
+    ...perguntas.map(
+      (item, indice) =>
+        `${indice + 1}. ${item.titulo}\n${respostas[item.id] || ""}`,
+    ),
+    "",
+    "Gostaria de conversar sobre os próximos passos.",
+  ].join("\n");
+
+  return (
+    <form className="form-exp" onSubmit={continuar}>
+      <div className="form-exp-progresso">
+        <div className="form-exp-progresso-topo">
+          <span aria-live="polite" aria-atomic="true">
+            Etapa {etapa + 1} de {perguntas.length}
+          </span>
+
+          <span>Seu próximo destino começa aqui</span>
+        </div>
+
+        <div
+          className="form-exp-barra"
+          role="progressbar"
+          aria-label="Progresso do formulário"
+          aria-valuemin={1}
+          aria-valuemax={perguntas.length}
+          aria-valuenow={etapa + 1}
+          aria-valuetext={`Etapa ${etapa + 1} de ${perguntas.length}`}
+        >
+          <span style={{ width: `${progresso}%` }} />
+        </div>
       </div>
-    );
+
+      <fieldset className="form-exp-pergunta" key={pergunta.id}>
+        <legend>
+          <span className="form-exp-titulo" ref={tituloRef} tabIndex={-1}>
+            {pergunta.titulo}
+          </span>
+        </legend>
+
+        <p className="form-exp-ajuda">Selecione uma opção para continuar.</p>
+
+        <div className="form-exp-opcoes">
+          {pergunta.opcoes.map((opcao) => (
+            <label
+              className={`form-exp-opcao ${
+                respostaAtual === opcao ? "form-exp-opcao--selecionada" : ""
+              }`}
+              key={opcao}
+            >
+              <input
+                type="radio"
+                name={pergunta.id}
+                value={opcao}
+                checked={respostaAtual === opcao}
+                onChange={() => selecionarResposta(opcao)}
+                required
+              />
+
+              <span>{opcao}</span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div className="form-exp-acoes">
+        <button
+          type="button"
+          className="form-exp-voltar"
+          disabled={etapa === 0}
+          onClick={() => mudarEtapa(etapa - 1)}
+        >
+          <span aria-hidden="true">←</span>
+          Voltar
+        </button>
+
+        {ultimaEtapa && completo ? (
+          <a
+            className="form-exp-continuar"
+            href={linkWhatsApp(mensagem)}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-describedby={avisoId}
+          >
+            {textoBotao}
+            <span aria-hidden="true">↗</span>
+          </a>
+        ) : (
+          <button
+            type="submit"
+            className="form-exp-continuar"
+            disabled={!respostaAtual || ultimaEtapa}
+          >
+            {ultimaEtapa ? textoBotao : "Continuar"}
+            <span aria-hidden="true">{ultimaEtapa ? "↗" : "→"}</span>
+          </button>
+        )}
+      </div>
+
+      <p className="form-exp-aviso" id={avisoId}>
+        {ultimaEtapa
+          ? espera
+            ? "O WhatsApp abrirá com suas respostas. Toque em Enviar para encaminhá-las ao Chico e conversar sobre essa expedição."
+            : "O WhatsApp abrirá com suas respostas. Toque em Enviar para encaminhá-las ao Chico. Isso ainda não confirma sua reserva."
+          : "Suas respostas ajudam o Chico a entender seu perfil e orientar os próximos passos."}
+      </p>
+    </form>
+  );
+}
+
+function ContatoDireto({ expedicao }) {
+  const esgotada = expedicao.status === "esgotada";
+
+  const mensagem =
+    expedicao.mensagemWhatsApp ||
+    `Oi, Chico! Quero saber mais sobre a expedição ${expedicao.nome} ${expedicao.ano}.`;
+
+  return (
+    <div className="form-exp">
+      <p className="form-exp-ajuda">
+        {esgotada
+          ? "Essa edição está esgotada. Converse com o Chico sobre a lista de espera ou uma próxima edição."
+          : "Converse com o Chico para conhecer os detalhes dessa expedição."}
+      </p>
+
+      <div className="form-exp-acoes">
+        <a
+          className="form-exp-continuar"
+          href={linkWhatsApp(mensagem)}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {esgotada
+            ? "Quero saber sobre a próxima edição"
+            : "Conversar com o Chico"}
+
+          <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+
+      <p className="form-exp-aviso">
+        O WhatsApp abrirá com uma mensagem pronta. Toque em Enviar para iniciar
+        a conversa.
+      </p>
+    </div>
+  );
+}
+
+export default function Formulario({ expedicao, tipo = "contato" }) {
+  const configuracao = getFormularioExpedicao(expedicao);
+  const espera = tipo === "espera" || expedicao.status === "em-breve";
+  const esgotada = expedicao.status === "esgotada";
+
+  if (!configuracao || esgotada) {
+    return <ContatoDireto expedicao={expedicao} />;
   }
 
   return (
-    <form className="form" onSubmit={enviar}>
-      <input
-        type="checkbox"
-        name="botcheck"
-        className="form-honeypot"
-        tabIndex="-1"
-        autoComplete="off"
-      />
-
-      <label className="form-field">
-        <span>Seu nome</span>
-        <input name="nome" type="text" required autoComplete="name" />
-      </label>
-
-      <div className="form-row">
-        <label className="form-field">
-          <span>WhatsApp com DDD</span>
-          <input
-            name="whatsapp"
-            type="tel"
-            required
-            autoComplete="tel"
-            placeholder="(DDD) 9 0000-0000"
-          />
-        </label>
-        <label className="form-field">
-          <span>E-mail</span>
-          <input name="email" type="email" required autoComplete="email" />
-        </label>
-      </div>
-
-      <label className="form-field">
-        <span>Instagram (opcional)</span>
-        <input
-          name="instagram"
-          type="text"
-          autoComplete="off"
-          placeholder="@seuperfil"
-        />
-      </label>
-
-      <button
-        type="submit"
-        className="btn-primary form-btn"
-        disabled={estado === "enviando"}
-      >
-        {estado === "enviando"
-          ? "Enviando…"
-          : espera
-            ? "Entrar na lista de espera"
-            : "Quero que o Chico me chame"}
-      </button>
-
-      {estado === "erro" && (
-        <p className="form-erro" role="alert">
-          Não foi possível enviar agora. Tente de novo ou chame o Chico direto
-          no WhatsApp.
-        </p>
-      )}
-    </form>
+    <FormularioWhatsApp
+      key={`${expedicao.slug}-${tipo}-${expedicao.status}`}
+      expedicao={expedicao}
+      configuracao={configuracao}
+      espera={espera}
+    />
   );
 }
