@@ -1,7 +1,9 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { expedicoes, VIDEO_PADRAO } from "../data/expedicoes";
+import RoteiroExpedicao from "../components/RoteiroExpedicao";
 import Formulario from "../components/Formulario";
+import DecisaoExpedicao from "../components/DecisaoExpedicao";
 import FAQ from "../components/FAQ";
 import ScrollReveal from "../components/ScrollReveal";
 import Depoimentos from "../components/Depoimentos";
@@ -258,6 +260,7 @@ function IconeLista() {
 
 function iconePara(titulo) {
   const t = titulo.toLowerCase();
+
   if (t.includes("voo")) return IconePlane;
   if (t.includes("hosped")) return IconeHotel;
   if (t.includes("transfer") || t.includes("traslado")) return IconeVan;
@@ -267,6 +270,7 @@ function iconePara(titulo) {
   if (t.includes("sol")) return IconeSol;
   if (t.includes("calçado")) return IconeTenis;
   if (t.includes("opcional")) return IconeLista;
+
   return Check;
 }
 
@@ -277,6 +281,7 @@ function Grupos({ grupos, aninhado }) {
     >
       {grupos.map((g, i) => {
         const IconeCard = iconePara(g.titulo);
+
         return (
           <ScrollReveal
             as="div"
@@ -290,6 +295,7 @@ function Grupos({ grupos, aninhado }) {
               </span>
               <h4>{g.titulo}</h4>
             </div>
+
             {g.itens.length === 1 ? (
               <p className="pagina-card-texto-unico">{g.itens[0]}</p>
             ) : (
@@ -317,6 +323,7 @@ function NaoInclusoCard({ itens }) {
         </span>
         <h4>Não incluso na expedição</h4>
       </div>
+
       <div className="pagina-chips">
         {itens.map((item) => (
           <span className="pagina-chip" key={item}>
@@ -485,76 +492,105 @@ export default function ExpedicaoPage() {
       )}
 
       {expedicao.incluso && (
-        <section className="pagina-bloco" id="incluso">
-          <div className="container">
-            <ScrollReveal as="div" className="pagina-incluso-intro">
-              <p className="eyebrow">Tudo resolvido antes do embarque</p>
-              <h2>Tudo resolvido antes mesmo de você embarcar.</h2>
-              <p>
-                Sua viagem por {expedicao.destino} vai ser mais simples do que
-                você imagina.
-              </p>
-              <p>
-                Mesmo com outro idioma, cultura diferente e toda a logística de
-                uma viagem como essa, muita coisa já estará organizada antes da
-                sua chegada.
-              </p>
-              <p>
-                É aquele trabalho que você talvez nem perceba durante a viagem,
-                justamente porque tudo estará acontecendo como deveria.
-              </p>
+        <section className="pagina-bloco incluso-editorial" id="incluso">
+          <div className="container incluso-editorial-grid">
+            <ScrollReveal as="div" className="incluso-editorial-visual">
+              <div className="incluso-editorial-foto">
+                <img
+                  src={expedicao.imagemHero}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  style={{
+                    objectPosition: expedicao.imagemHeroPosicao || "center",
+                  }}
+                />
+
+                <div className="incluso-editorial-legenda">
+                  <span className="incluso-editorial-etiqueta">
+                    A sua próxima experiência
+                  </span>
+
+                  {expedicao.duracao && (
+                    <p className="incluso-editorial-duracao">
+                      {expedicao.duracao}
+                    </p>
+                  )}
+
+                  <p className="incluso-editorial-detalhe">
+                    {expedicao.duracaoDetalhe || nomeExibicao}
+                  </p>
+                </div>
+              </div>
             </ScrollReveal>
 
-            <ScrollReveal as="div" delay={0.1} className="pagina-incluso-card">
-              {temMeta && (
-                <div className="pagina-incluso-meta">
-                  <div className="pagina-incluso-meta-esquerda">
-                    <span className="pagina-incluso-meta-icone">
+            <div className="incluso-editorial-conteudo">
+              <ScrollReveal as="div" className="incluso-editorial-intro">
+                <p className="eyebrow">Tudo resolvido antes do embarque</p>
+
+                <h2>Tudo resolvido antes mesmo de você embarcar.</h2>
+
+                <p className="incluso-editorial-descricao">
+                  Dos deslocamentos às hospedagens, os principais detalhes já
+                  estão organizados para você aproveitar cada etapa da
+                  expedição.
+                </p>
+
+                {temMeta && (
+                  <div className="incluso-editorial-rota">
+                    <span aria-hidden="true">
                       <IconeExpedicao />
                     </span>
-                    <div>
-                      <span className="pagina-incluso-meta-eyebrow">
-                        Expedição
-                      </span>
-                      <span className="pagina-incluso-meta-destino">
-                        {expedicao.destino}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="pagina-incluso-meta-direita">
-                    {[expedicao.rota, expedicao.hospedagemResumo]
-                      .filter(Boolean)
-                      .join("  ·  ")}
-                  </div>
-                </div>
-              )}
 
-              {expedicao.duracaoDetalhe ? (
-                <div className="pagina-incluso-destaque">
-                  <div className="pagina-duracao-card">
-                    <img src={expedicao.imagemHero} alt="" />
-                    <div className="pagina-duracao-overlay" />
-                    <div className="pagina-duracao-conteudo">
-                      <span className="pagina-duracao-eyebrow">
-                        A expedição
-                      </span>
-                      <span className="pagina-duracao-numero">
-                        {expedicao.duracao?.match(/\d+/)?.[0]}
-                        <em>dias</em>
-                      </span>
-                      <p>{expedicao.duracaoDetalhe}</p>
-                    </div>
+                    <p>
+                      {[expedicao.rota, expedicao.hospedagemResumo]
+                        .filter(Boolean)
+                        .join(" · ")}
+                    </p>
                   </div>
-                  <Grupos grupos={expedicao.incluso} aninhado />
-                </div>
-              ) : (
-                <Grupos grupos={expedicao.incluso} aninhado />
-              )}
-            </ScrollReveal>
+                )}
+              </ScrollReveal>
+
+              <div className="incluso-editorial-lista">
+                {expedicao.incluso.map((grupo) => {
+                  const Icone = iconePara(grupo.titulo);
+
+                  return (
+                    <ScrollReveal
+                      as="article"
+                      key={grupo.titulo}
+                      className="incluso-editorial-item"
+                    >
+                      <span
+                        className="incluso-editorial-icone"
+                        aria-hidden="true"
+                      >
+                        <Icone />
+                      </span>
+
+                      <div className="incluso-editorial-item-conteudo">
+                        <h3>{grupo.titulo}</h3>
+
+                        {grupo.itens.length === 1 ? (
+                          <p>{grupo.itens[0]}</p>
+                        ) : (
+                          <ul>
+                            {grupo.itens.map((item) => (
+                              <li key={item}>{item}</li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    </ScrollReveal>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </section>
       )}
 
+      <RoteiroExpedicao key={expedicao.slug} expedicao={expedicao} />
       {(temNaoIncluso || temObrigatorios) && (
         <section className="pagina-bloco pagina-bloco--bg">
           <div className="container">
@@ -569,6 +605,7 @@ export default function ExpedicaoPage() {
                   <NaoInclusoCard itens={expedicao.naoIncluso} />
                 </ScrollReveal>
               )}
+
               {temObrigatorios && (
                 <ScrollReveal as="div" delay={0.1} className="pagina-coluna">
                   <h2 className="pagina-secao-titulo pagina-secao-titulo--esquerda">
@@ -582,123 +619,7 @@ export default function ExpedicaoPage() {
         </section>
       )}
 
-      {expedicao.roteiro && (
-        <section className="pagina-bloco" id="roteiro">
-          <div className="container">
-            <ScrollReveal as="div" className="pagina-incluso-intro">
-              <p className="eyebrow">Tudo pensado para você</p>
-              <h2>
-                Você vive a experiência.
-                <span className="pagina-roteiro-leve">
-                  A gente cuida do resto.
-                </span>
-              </h2>
-              <p>
-                {expedicao.destino} é uma viagem de muitos cenários,
-                deslocamentos e experiências.
-              </p>
-              <p>
-                Por isso, cuidamos da logística e dos principais detalhes com
-                antecedência.
-              </p>
-              <p>
-                Você embarca tranquilo e encontra uma viagem que já está pronta
-                para ser vivida.
-              </p>
-            </ScrollReveal>
-
-            <div className="pagina-roteiro-grid">
-              {expedicao.roteiro.map((dia, i) => (
-                <ScrollReveal
-                  as="div"
-                  key={dia.dia}
-                  delay={(i % 2) * 0.08}
-                  className="pagina-card pagina-roteiro-card"
-                >
-                  <div className="pagina-roteiro-card-topo">
-                    <span className="pagina-roteiro-numero">{dia.dia}</span>
-                    <span className="pagina-roteiro-data">{dia.data}</span>
-                  </div>
-                  <h4>{dia.titulo}</h4>
-                  <p className="pagina-roteiro-texto">{dia.texto}</p>
-                </ScrollReveal>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
-
-      {expedicao.decisao && (
-        <section className="pagina-bloco pagina-decisao-wrap" id="decisao">
-          <div className="container">
-            <ScrollReveal as="div" className="pagina-decisao-header">
-              <p className="eyebrow">A decisão</p>
-              <h2>
-                {expedicao.decisao.titulo}{" "}
-                <em>{expedicao.decisao.tituloDestaque}</em>
-              </h2>
-              {(expedicao.periodo || expedicao.periodoNota) && (
-                <p className="pagina-decisao-periodo">
-                  {expedicao.periodo || expedicao.periodoNota}
-                </p>
-              )}
-            </ScrollReveal>
-
-            <ScrollReveal as="div" delay={0.1} className="pagina-decisao-card">
-              <div className="pagina-decisao-topo">
-                <span className="pagina-decisao-tag">
-                  <span className="pagina-decisao-tag-numero">#1</span>
-                  {expedicao.decisao.tag}
-                </span>
-                {expedicao.duracao && (
-                  <span className="pagina-decisao-duracao">
-                    {expedicao.duracao}
-                  </span>
-                )}
-              </div>
-
-              <p className="pagina-decisao-eyebrow-interna">Expedição</p>
-              <h3 className="pagina-decisao-nome">
-                {nomeExibicao} <span>{expedicao.ano}</span>
-              </h3>
-              <p className="pagina-decisao-resumo">
-                {expedicao.decisao.resumo}
-              </p>
-
-              <ul className="pagina-decisao-destaques">
-                {expedicao.decisao.destaques.map((item) => (
-                  <li key={item}>
-                    <Check />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <div className="pagina-decisao-preco-wrap">
-                <span className="pagina-decisao-preco-label">
-                  Faixa de investimento
-                </span>
-                <span className="pagina-decisao-preco">
-                  {expedicao.decisao.precoMin} <em>—</em>{" "}
-                  {expedicao.decisao.precoMax}
-                </span>
-              </div>
-
-              <a
-                href="#formulario"
-                className="btn-hero-pill pagina-decisao-btn"
-              >
-                Reservar minha vaga
-                <span className="btn-hero-pill-arrow">→</span>
-              </a>
-
-              <p className="pagina-decisao-rodape">
-                ★ Grupos reduzidos · Vagas limitadas ★
-              </p>
-            </ScrollReveal>
-          </div>
-        </section>
-      )}
+      <DecisaoExpedicao expedicao={expedicao} />
 
       {expedicao.porqueExpedicao && (
         <section className="pagina-bloco pagina-bloco--bg" id="porque">
@@ -706,6 +627,7 @@ export default function ExpedicaoPage() {
             <div className="pagina-porque-container">
               <ScrollReveal as="div" className="pagina-porque-header">
                 <p className="eyebrow">Por que expedição</p>
+
                 <h2>
                   Por que viver {nomeExibicao} <em>em formato de expedição?</em>
                 </h2>
@@ -717,7 +639,9 @@ export default function ExpedicaoPage() {
                   className="pagina-porque-card pagina-porque-card--negativo"
                 >
                   <span className="pagina-porque-tag">Por conta própria</span>
+
                   <h3>A viagem também vira trabalho</h3>
+
                   <ul>
                     {expedicao.porqueExpedicao.semGuia.map((item) => (
                       <li key={item}>
@@ -727,13 +651,16 @@ export default function ExpedicaoPage() {
                     ))}
                   </ul>
                 </ScrollReveal>
+
                 <ScrollReveal
                   as="div"
                   delay={0.12}
                   className="pagina-porque-card pagina-porque-card--positivo"
                 >
                   <span className="pagina-porque-tag">Com o Chico</span>
+
                   <h3>A viagem deixa de ser trabalho</h3>
+
                   <ul>
                     {expedicao.porqueExpedicao.comChico.map((item) => (
                       <li key={item}>
@@ -755,6 +682,7 @@ export default function ExpedicaoPage() {
             <ScrollReveal as="h2" className="pagina-secao-titulo">
               O que levar na mochila
             </ScrollReveal>
+
             <Grupos grupos={expedicao.dicas} />
           </div>
         </section>
@@ -776,8 +704,11 @@ export default function ExpedicaoPage() {
         <div className="container pagina-formulario-inner">
           <ScrollReveal as="div">
             <p className="eyebrow">Seu próximo passo</p>
+
             <h2 className="pagina-formulario-titulo">{formularioTitulo}</h2>
+
             <span className="pagina-divisor" />
+
             <p className="pagina-formulario-sub">{formularioSubtitulo}</p>
           </ScrollReveal>
 
