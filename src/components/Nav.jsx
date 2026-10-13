@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/images/logo-sem-fundo.png";
+import logo from "../assets/images/logo-sem-fundo-v2.png";
 import { expedicoes } from "../data/expedicoes";
 import "./Nav.css";
 
@@ -35,6 +35,10 @@ export default function Nav() {
           label: "O Chico responde",
         },
         { href: "#depoimentos", label: "Depoimentos" },
+        ["china-2027", "egito-2027"].includes(expedicaoAtual.slug) && {
+          href: "#formulario",
+          label: "Tenho interesse",
+        },
       ].filter(Boolean)
     : null;
 

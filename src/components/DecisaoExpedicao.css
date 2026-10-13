@@ -1,0 +1,270 @@
+/* ================= DECISÃO DA EXPEDIÇÃO ================= */
+
+.decisao-expedicao {
+  padding-block: clamp(64px, 8vw, 112px);
+  background: var(--dark-deeper);
+  color: var(--white);
+  scroll-margin-top: 120px;
+}
+
+.decisao-expedicao-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+  align-items: start;
+  gap: clamp(40px, 6vw, 96px);
+}
+
+.decisao-expedicao-conteudo,
+.decisao-expedicao-investimento {
+  min-width: 0;
+}
+
+.decisao-expedicao-eyebrow {
+  margin: 0 0 24px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.decisao-expedicao h2 {
+  max-width: 20ch;
+  margin: 0 0 32px;
+  font-family: var(--font-display);
+  font-size: clamp(30px, 3.6vw, 50px);
+  font-weight: 800;
+  line-height: 1.14;
+  letter-spacing: -0.025em;
+  color: var(--white);
+  text-wrap: balance;
+}
+
+.decisao-expedicao h2 em {
+  font-family: inherit;
+  font-style: normal;
+  color: var(--white);
+}
+
+.decisao-expedicao-identidade {
+  margin-bottom: 24px;
+  padding-left: 18px;
+  border-left: 2px solid var(--gold);
+}
+
+.decisao-expedicao-identidade p {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.decisao-expedicao-identidade p > span {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.decisao-expedicao-periodo {
+  display: block;
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.decisao-expedicao-resumo {
+  max-width: 55ch;
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.decisao-expedicao-investimento {
+  padding: clamp(24px, 3vw, 40px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.decisao-expedicao-preco-label {
+  margin: 0 0 24px;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.decisao-expedicao-preco {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin: 0 0 20px;
+  font-family: var(--font-display);
+  font-size: clamp(32px, 3.2vw, 44px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+}
+
+.decisao-expedicao-preco-conector {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.decisao-expedicao-duracao {
+  margin: 0 0 28px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.decisao-expedicao-botao {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 56px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 100px;
+  background: var(--dark);
+  color: var(--white);
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-decoration: none;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.decisao-expedicao-botao > span {
+  flex-shrink: 0;
+  font-size: 22px;
+  line-height: 1;
+}
+
+.decisao-expedicao-botao:hover {
+  background: var(--dark-deeper);
+  border-color: var(--white);
+  color: var(--white);
+}
+
+.decisao-expedicao-botao:focus-visible {
+  outline: 3px solid var(--white);
+  outline-offset: 4px;
+}
+
+.decisao-expedicao-proximo-passo {
+  margin: 18px 0 24px;
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.decisao-expedicao-disponibilidade {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.decisao-expedicao-disponibilidade > span {
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold-soft);
+}
+
+.decisao-expedicao-destaques {
+  margin-top: 56px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.decisao-expedicao-destaques-label {
+  margin: 0 0 24px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.decisao-expedicao-destaques ul {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 32px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.decisao-expedicao-destaques li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding-block: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: 13px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.decisao-expedicao-destaques li > span {
+  flex-shrink: 0;
+  color: var(--gold-soft);
+}
+
+@media (max-width: 900px) {
+  .decisao-expedicao-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 36px;
+  }
+
+  .decisao-expedicao h2 {
+    max-width: 24ch;
+  }
+
+  .decisao-expedicao-destaques ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .decisao-expedicao-investimento {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .decisao-expedicao-preco {
+    font-size: 36px;
+  }
+
+  .decisao-expedicao-destaques {
+    margin-top: 40px;
+  }
+
+  .decisao-expedicao-destaques ul {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .decisao-expedicao-botao {
+    transition: none;
+  }
+}
