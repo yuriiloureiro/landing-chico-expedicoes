@@ -133,12 +133,12 @@
   width: 100%;
   min-height: 56px;
   padding: 16px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  border: 1px solid var(--gold);
   border-radius: 100px;
-  background: var(--dark);
+  background: var(--gold);
   color: var(--white);
   font-size: 14px;
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.4;
   text-decoration: none;
   transition:
@@ -150,11 +150,12 @@
   flex-shrink: 0;
   font-size: 22px;
   line-height: 1;
+  color: inherit;
 }
 
 .decisao-expedicao-botao:hover {
-  background: var(--dark-deeper);
-  border-color: var(--white);
+  background: #ae512b;
+  border-color: #ae512b;
   color: var(--white);
 }
 

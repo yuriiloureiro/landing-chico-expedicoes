@@ -1,3 +1,4 @@
+import { useId, useRef, useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 import "./Depoimentos.css";
 
@@ -43,41 +44,129 @@ function AspasIcone() {
 }
 
 function Card({ item }) {
+  const [expandido, setExpandido] = useState(false);
+  const textoId = useId();
+  const textoLongo = item.texto.length > 300;
   const inicial = item.nome.charAt(0);
+
   return (
-    <div className="depoimento-card">
+    <article className="depoimento-card">
       <span className="depoimento-aspas">
         <AspasIcone />
       </span>
-      <p className="depoimento-texto">{item.texto}</p>
+
+      <p
+        className={`depoimento-texto ${
+          textoLongo && !expandido ? "depoimento-texto--resumido" : ""
+        }`}
+        id={textoId}
+      >
+        {item.texto}
+      </p>
+
+      {textoLongo && (
+        <button
+          type="button"
+          className="depoimento-ler"
+          aria-expanded={expandido}
+          aria-controls={textoId}
+          aria-label={`${
+            expandido ? "Recolher" : "Ler depoimento completo de"
+          } ${item.nome}`}
+          onClick={() => setExpandido((atual) => !atual)}
+        >
+          {expandido ? "Mostrar menos" : "Ler depoimento completo"}
+          <span aria-hidden="true">{expandido ? "−" : "+"}</span>
+        </button>
+      )}
+
       <div className="depoimento-autor">
-        <span className="depoimento-avatar">{inicial}</span>
+        <span className="depoimento-avatar" aria-hidden="true">
+          {inicial}
+        </span>
+
         <div>
           <span className="depoimento-nome">{item.nome}</span>
           <span className="depoimento-expedicao">{item.expedicao}</span>
         </div>
       </div>
-    </div>
+    </article>
   );
 }
 
 export default function Depoimentos({ id }) {
-  const loop = [...depoimentos, ...depoimentos];
+  const trilhoRef = useRef(null);
+  const trilhoId = useId();
+
+  function navegar(direcao) {
+    const trilho = trilhoRef.current;
+
+    if (!trilho) return;
+
+    const card = trilho.querySelector(".depoimento-card");
+
+    if (!card) return;
+
+    const espacamento =
+      parseFloat(window.getComputedStyle(trilho).columnGap) || 0;
+
+    const reduzirMovimento = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    trilho.scrollBy({
+      left: direcao * (card.getBoundingClientRect().width + espacamento),
+      behavior: reduzirMovimento ? "instant" : "smooth",
+    });
+  }
 
   return (
     <section className="depoimentos" id={id}>
-      <ScrollReveal as="div" className="section-header">
-        <p className="eyebrow">Quem já viveu</p>
-        <h2 className="section-title">Não é só o que eu digo</h2>
-      </ScrollReveal>
+      <div className="container">
+        <ScrollReveal as="div" className="section-header">
+          <p className="eyebrow">Quem já viveu</p>
+          <h2 className="section-title">Não é só o que eu digo</h2>
+        </ScrollReveal>
 
-      <ScrollReveal as="div" className="depoimentos-track" y={16}>
-        <div className="depoimentos-loop">
-          {loop.map((item, i) => (
-            <Card item={item} key={`${item.nome}-${i}`} />
+        <div
+          className="depoimentos-track"
+          ref={trilhoRef}
+          id={trilhoId}
+          role="region"
+          aria-label="Depoimentos de viajantes"
+          tabIndex={0}
+        >
+          {depoimentos.map((item) => (
+            <Card item={item} key={item.nome} />
           ))}
         </div>
-      </ScrollReveal>
+
+        <div className="depoimentos-navegacao">
+          <p>Conheça outras experiências</p>
+
+          <div className="depoimentos-controles">
+            <button
+              type="button"
+              className="depoimentos-seta"
+              aria-label="Ver depoimentos anteriores"
+              aria-controls={trilhoId}
+              onClick={() => navegar(-1)}
+            >
+              <span aria-hidden="true">←</span>
+            </button>
+
+            <button
+              type="button"
+              className="depoimentos-seta"
+              aria-label="Ver próximos depoimentos"
+              aria-controls={trilhoId}
+              onClick={() => navegar(1)}
+            >
+              <span aria-hidden="true">→</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }
