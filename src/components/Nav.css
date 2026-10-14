@@ -34,9 +34,8 @@
 .nav-brand img {
   display: block;
   width: 220px;
-  height: 44px;
-  object-fit: cover;
-  object-position: center;
+  height: auto;
+  object-fit: contain;
 }
 
 .nav-links {
@@ -147,6 +146,6 @@
 
   .nav-brand img {
     width: 170px;
-    height: 34px;
+    height: auto;
   }
 }

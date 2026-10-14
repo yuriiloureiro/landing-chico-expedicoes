@@ -180,7 +180,7 @@ export const expedicoes = [
     ],
     naoIncluso: [
       "Passagem aérea de ida e volta do Brasil para a Tailândia (com suporte do Chico na compra)",
-      "Refeições e bebidas",
+      "Refeições e bebidas não mencionadas.",
       "Hospedagens antes e depois da expedição",
       "Seguro viagem",
       "Chip de celular",
@@ -254,7 +254,7 @@ export const expedicoes = [
     ],
     naoIncluso: [
       "Passagem aérea de ida e volta do Brasil para a Tailândia (com suporte do Chico na compra)",
-      "Refeições e bebidas",
+      "Refeições e bebidas não mencionadas.",
       "Hospedagens antes e depois da expedição",
       "Seguro viagem",
       "Chip de celular",
@@ -530,7 +530,7 @@ export const expedicoes = [
     ],
     naoIncluso: [
       "Passagem aérea de ida e volta do Brasil para as Filipinas (com suporte do Chico na compra)",
-      "Refeições e bebidas, exceto o café da manhã incluso nas hospedagens",
+      "Refeições e bebidas não mencionadas",
       "Hospedagens antes e depois da expedição",
       "Seguro viagem",
       "Chip de celular",
@@ -787,7 +787,7 @@ export const expedicoes = [
     naoIncluso: [
       "Passagem aérea (com suporte do Chico na compra)",
       "Hospedagens antes e depois da expedição",
-      "Refeições e bebidas não mencionadas no roteiro",
+      "Refeições e bebidas não mencionadas.",
       "Outras despesas não mencionadas",
     ],
     roteiro: [
@@ -797,6 +797,7 @@ export const expedicoes = [
         local: "São Luís",
         imagem: saoLuisCentroHistorico,
         imagemAlt: "Rua do Centro Histórico de São Luís ao entardecer",
+        imagemPosicao: "center bottom",
         titulo: "Chegando ao Maranhão",
         texto:
           "Chegada a São Luís, transfer para a hospedagem e, à noite, uma primeira volta pelo Centro Histórico para entrar no clima da viagem.",
@@ -807,6 +808,7 @@ export const expedicoes = [
         local: "São Luís · Barreirinhas",
         imagem: barreirinhasOrla,
         imagemAlt: "Orla de Barreirinhas ao pôr do sol",
+        imagemPosicao: "center bottom",
         titulo: "Conhecendo a ilha do Amor",
         texto:
           "Um passeio por São Luís antes de seguirmos rumo a Barreirinhas, onde a aventura pelos Lençóis começa a ganhar forma.",
@@ -827,6 +829,7 @@ export const expedicoes = [
         local: "Bandeira do Bonzinho · Baixa Grande",
         imagem: lencoisGrupoDunas,
         imagemAlt: "Grupo reunido nas dunas ao entardecer",
+        imagemPosicao: "center 75%",
         titulo: "A jornada começa",
         texto:
           "É hora de colocar o pé na areia. Saímos de Bandeira do Bonzinho e caminhamos cerca de 10 km até Baixa Grande, nosso primeiro ponto de apoio.",
@@ -847,6 +850,7 @@ export const expedicoes = [
         local: "Queimada dos Britos · Betânia",
         imagem: lencoisCaminhadaLagoa,
         imagemAlt: "Viajante caminhando perto de uma lagoa e das dunas",
+        imagemPosicao: "center 75%",
         titulo: "O dia que vai testar seus limites",
         texto:
           "O trecho mais desafiador da jornada: cerca de 18 km entre Queimada dos Britos e Betânia. E, pelo caminho, sempre existe uma lagoa esperando para renovar as energias.",
@@ -1022,7 +1026,7 @@ export const expedicoes = [
     ],
     naoIncluso: [
       "Passagem aérea de ida e volta do Brasil para a Tailândia (com suporte do Chico na compra)",
-      "Refeições e bebidas, exceto o café da manhã incluso nas hospedagens",
+      "Refeições e bebidas não mencionadas.",
       "Hospedagens antes e depois da expedição",
       "Seguro viagem",
       "Chip de celular",
