@@ -344,3 +344,28 @@
     transition: none;
   }
 }
+
+.form-exp-grupo {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(23, 73, 103, 0.16);
+}
+
+.form-exp-grupo-titulo {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--dark-deeper);
+}
+
+.form-exp-grupo-texto {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--muted);
+}

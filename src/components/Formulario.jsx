@@ -7,6 +7,7 @@ function FormularioWhatsApp({ expedicao, configuracao, espera }) {
   const { perguntas, periodo } = configuracao;
   const [etapa, setEtapa] = useState(0);
   const [respostas, setRespostas] = useState({});
+  const [conversaAberta, setConversaAberta] = useState(false);
   const tituloRef = useRef(null);
   const deveFocarRef = useRef(false);
 
@@ -17,9 +18,28 @@ function FormularioWhatsApp({ expedicao, configuracao, espera }) {
   const progresso = ((etapa + 1) / perguntas.length) * 100;
   const avisoId = `form-exp-aviso-${expedicao.slug}`;
 
-  const textoBotao = espera
-    ? "Quero receber os detalhes"
-    : "Conversar com o Chico";
+  const grupoChina =
+    expedicao.slug === "china-2027"
+      ? "https://chat.whatsapp.com/H24w62kW3d74ZGGHdiXIMS"
+      : null;
+
+  const textoBotao = grupoChina
+    ? "Enviar respostas ao Chico"
+    : espera
+      ? "Quero receber os detalhes"
+      : "Conversar com o Chico";
+
+  const aviso = grupoChina
+    ? ultimaEtapa
+      ? conversaAberta
+        ? "Depois de enviar a mensagem ao Chico no WhatsApp, volte aqui e use o botão abaixo para entrar no grupo. O site não confirma o envio da mensagem."
+        : "Primeiro, abra o WhatsApp e toque em Enviar para encaminhar suas respostas ao Chico. Depois, volte a esta página para acessar o convite do grupo."
+      : "Responda às cinco perguntas. Ao finalizar, você poderá enviar suas respostas ao Chico e acessar o grupo da expedição China."
+    : ultimaEtapa
+      ? espera
+        ? "O WhatsApp abrirá com suas respostas. Toque em Enviar para encaminhá-las ao Chico e conversar sobre essa expedição."
+        : "O WhatsApp abrirá com suas respostas. Toque em Enviar para encaminhá-las ao Chico. Isso ainda não confirma sua reserva."
+      : "Suas respostas ajudam o Chico a entender seu perfil e orientar os próximos passos.";
 
   useEffect(() => {
     if (deveFocarRef.current) {
@@ -38,6 +58,8 @@ function FormularioWhatsApp({ expedicao, configuracao, espera }) {
       ...atuais,
       [pergunta.id]: valor,
     }));
+
+    setConversaAberta(false);
   }
 
   function continuar(event) {
@@ -46,6 +68,12 @@ function FormularioWhatsApp({ expedicao, configuracao, espera }) {
     if (!respostaAtual || ultimaEtapa) return;
 
     mudarEtapa(etapa + 1);
+  }
+
+  function registrarAberturaDaConversa() {
+    if (grupoChina) {
+      setConversaAberta(true);
+    }
   }
 
   const mensagem = [
@@ -143,6 +171,7 @@ function FormularioWhatsApp({ expedicao, configuracao, espera }) {
             target="_blank"
             rel="noopener noreferrer"
             aria-describedby={avisoId}
+            onClick={registrarAberturaDaConversa}
           >
             {textoBotao}
             <span aria-hidden="true">↗</span>
@@ -159,13 +188,37 @@ function FormularioWhatsApp({ expedicao, configuracao, espera }) {
         )}
       </div>
 
-      <p className="form-exp-aviso" id={avisoId}>
-        {ultimaEtapa
-          ? espera
-            ? "O WhatsApp abrirá com suas respostas. Toque em Enviar para encaminhá-las ao Chico e conversar sobre essa expedição."
-            : "O WhatsApp abrirá com suas respostas. Toque em Enviar para encaminhá-las ao Chico. Isso ainda não confirma sua reserva."
-          : "Suas respostas ajudam o Chico a entender seu perfil e orientar os próximos passos."}
+      <p
+        className="form-exp-aviso"
+        id={avisoId}
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        {aviso}
       </p>
+
+      {grupoChina && ultimaEtapa && completo && conversaAberta && (
+        <div className="form-exp-grupo">
+          <p className="form-exp-grupo-titulo">
+            Agora, entre no grupo da China
+          </p>
+
+          <p className="form-exp-grupo-texto">
+            Já enviou suas respostas ao Chico? Acesse o convite abaixo para
+            acompanhar as novidades da expedição.
+          </p>
+
+          <a
+            className="form-exp-continuar"
+            href={grupoChina}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Entrar no grupo da China
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+      )}
     </form>
   );
 }
